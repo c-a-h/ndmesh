@@ -7,3 +7,5 @@ HTML, CSS and JavaScript for the front end.  I just want to be able to reference
 I am the primary author on probably 90% of this code.  Greg Angle is the author of the other 10%.  
 He primarily wrote network programs in C to handle passing the commands and data back and forth to the webserver.
 Unfortunately, I could not find a copy of that code.
+
+Please see this for a reference of myself and Greg at the ND REU site: http://www.cse.nd.edu/~darts/reupeople.html
