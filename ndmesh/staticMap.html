@@ -1,0 +1,746 @@
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+  function initialize() {
+  
+    var router1 = new google.maps.LatLng(41.699257,-86.237157);
+    //Niemier
+    //
+    //
+    //172.30.100.1
+    //1
+    //GW
+    // 
+    //00:0D:B9:16:F7:0C
+    //129.74.152.236
+    //00:0B:6B:86:E7:EE
+    //00:15:6D:64:96:57
+    //10.192.100.1
+    //0
+  
+    var router3 = new google.maps.LatLng(41.696169,-86.234998);
+    //Legends
+    //129.74.152.234
+    //192.168.1.4
+    //172.30.100.3
+    //3
+    //NGW
+    // 00:80:F0:A9:A7:56
+    //
+    //
+    //00:0B:6B:86:E8:AD
+    //00:15:6D:64:99:8E
+    //10.192.100.3
+    //1
+  
+    var router2 = new google.maps.LatLng(41.698604,-86.234912);
+    //Stadium
+    //129.74.152.236
+    //
+    //172.30.100.2
+    //2
+    //NGW
+    // 
+    //
+    //
+    //06:0B:6B:86:E8:5E
+    //06:15:6D:64:9A:11
+    //10.192.100.2
+    //0
+  
+    var router4 = new google.maps.LatLng(41.698348,-86.236457);
+    //Debartolo
+    //129.74.152.236
+    //192.168.1.3
+    //172.30.100.4
+    //4
+    //NGW
+    // 00:80:F0:A9:A7:55
+    //
+    //
+    //00:0B:6B:86:E7:FA
+    //00:15:6D:64:86:CC
+    //10.192.100.4
+    //1
+  
+    var router5 = new google.maps.LatLng(41.696890,-86.237487);
+    //Stinson-Remick
+    //129.74.152.236
+    //192.168.0.253
+    //172.30.100.5
+    //5
+    //NGW
+    // 00:80:F0:AF:F8:3D
+    //
+    //
+    //00:0B:6B:86:E7:C4
+    //00:15:6D:64:86:F6
+    //10.192.100.5
+    //1
+  
+    var router7 = new google.maps.LatLng(41.699379,-86.236712);
+    //Fitz Roof
+    //
+    //
+    //172.30.100.7
+    //7
+    //NGW
+    // 
+    //
+    //
+    //00:0B:6B:86:EB:25
+    //00:15:6D:64:86:AA
+    //10.192.100.7
+    //1
+  
+    var router8 = new google.maps.LatLng(41.694807,-86.236650);
+    //DPAC
+    //129.74.152.236
+    //192.168.0.253
+    //172.30.100.8
+    //8
+    //NGW
+    // 00:80:F0:A9:A7:58
+    //
+    //
+    //00:0B:6B:DC:77:20
+    //00:15:6D:64:9A:03
+    //10.192.100.9
+    //1
+  
+    var router9 = new google.maps.LatLng(41.700431,-86.235749);
+    //OShag
+    //129.74.152.234
+    //
+    //172.30.100.9
+    //9
+    //NGW
+    // 
+    //
+    //
+    //00:0B:6B:86:E7:D7
+    //00:15:6D:64:86:E6
+    //10.192.100.9
+    //1
+  
+    var router10 = new google.maps.LatLng(41.700783,-86.237551);
+    //Hayes-Healey
+    //129.74.152.234
+    //192.168.1.253
+    //172.30.100.10
+    //10
+    //NGW
+    // 00:80:F0:A9:A7:EF
+    //
+    //
+    //06:0B:6B:86:E9:27
+    //06:15:6D:64:87:03
+    //10.192.100.10
+    //1
+  
+    var router12 = new google.maps.LatLng(41.699842,-86.237613);
+    //Curt
+    //
+    //
+    //172.30.100.12
+    //12
+    //GW
+    // 
+    //00:0D:B9:16:F6:D4
+    //129.74.152.234
+    //00:0B:6B:86:E7:DA
+    //00:15:6D:64:86:85
+    //10.192.100.12
+    //0
+  
+    var router13 = new google.maps.LatLng(41.702086,-86.235816);
+    //Stepan_Chemistry
+    //129.74.152.234
+    //192.168.0.253
+    //172.30.100.13
+    //13
+    //NGW
+    // 00:80:F0:AB:59:4F
+    //
+    //
+    //00:0B:6B:86:EB:4D
+    //00:15:6D:64:86:F0
+    //10.192.100.13
+    //1
+  
+    var router14 = new google.maps.LatLng(41.700687,-86.231993);
+    //Jordan
+    //129.74.152.234
+    //192.168.0.252
+    //172.30.100.14
+    //14
+    //NGW
+    // 00:80:F0:A9:A7:B8
+    //
+    //
+    //00:0B:6B:86:EB:1E
+    //00:15:6D:64:18:35
+    //10.192.100.14
+    //1
+  
+    var router16 = new google.maps.LatLng(41.705546,-86.234829);
+    //Flanner
+    //129.74.152.234
+    //192.168.1.253
+    //172.30.100.16
+    //16
+    //NGW
+    // 00:80:F0:A9:A7:BA
+    //
+    //
+    //00:0B:6B:86:E8:32
+    //00:15:6D:64:9A:00
+    //10.192.100.16
+    //1
+  
+    var router15 = new google.maps.LatLng(41.702113,-86.234418);
+    //Hesburgh Library
+    //129.74.152.234
+    //192.168.0.253
+    //172.30.100.15
+    //15
+    //NGW
+    // 00:80:F0:A9:A7:B9
+    //
+    //
+    //00:0B:6B:86:E8:71
+    //00:15:6D:64:86:DE
+    //10.192.100.15
+    //1
+  
+    var router40 = new google.maps.LatLng(41.699308,-86.237439);
+    //DARTS GW
+    //
+    //
+    //172.30.100.40
+    //40
+    //GW
+    // 
+    //00:0D:B9:16:F5:B4
+    //129.74.152.233
+    //00:0B:6B:86:EB:CE
+    //00:15:6D:64:96:4A
+    //10.192.100.40
+    //0
+  
+    var router41 = new google.maps.LatLng(41.699303,-86.237303);
+    //DARTS NGW
+    //129.74.152.233
+    //192.168.1.253
+    //172.30.100.41
+    //41
+    //NGW
+    // 
+    //
+    //
+    //00:0B:6B:86:EB:D6
+    //00:15:6D:64:99:B2
+    //10.192.100.41
+    //1
+  
+    var centerpoint = new google.maps.LatLng(41.700475,-86.234019);
+    var myOptions = {
+      zoom: 16,
+      center: centerpoint,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+       mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
+      }
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+    setTimeout(moveToDarwin, 3000);
+  });
+  
+  
+  
+ 
+var infowindow3 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Legends' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.696169,-86.234998' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.3' +  ' 00:0B:6B:86:E8:AD' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.3' +  ' 00:15:6D:64:99:8E' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.3&page=9&camname=Legends" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.3></a>'+'<br/>'
+ 
+ });
+ 
+  var marker3 = new google.maps.Marker({
+      position: router3, 
+      map: map,
+      title:"Legends"
+  });
+  google.maps.event.addListener(marker3, 'click', function() {
+    infowindow3.open(map,marker3);
+  });
+  
+  
+//192.168.1.4
+//1
+//00:80:F0:A9:A7:56
+//
+//
+ 
+var infowindow2 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Stadium' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.698604,-86.234912' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.2' +  ' 06:0B:6B:86:E8:5E' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.2' +  ' 06:15:6D:64:9A:11' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.2&page=9&camname=Stadium" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.2></a>'+'<br/>'
+ 
+ });
+ 
+  var marker2 = new google.maps.Marker({
+      position: router2, 
+      map: map,
+      title:"Stadium"
+  });
+  google.maps.event.addListener(marker2, 'click', function() {
+    infowindow2.open(map,marker2);
+  });
+  
+  
+//
+//0
+//
+//
+//
+ 
+var infowindow4 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Debartolo' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.698348,-86.236457' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.4' +  ' 00:0B:6B:86:E7:FA' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.4' +  ' 00:15:6D:64:86:CC' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.4&page=9&camname=Debartolo" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.4></a>'+'<br/>'
+ 
+ });
+ 
+  var marker4 = new google.maps.Marker({
+      position: router4, 
+      map: map,
+      title:"Debartolo"
+  });
+  google.maps.event.addListener(marker4, 'click', function() {
+    infowindow4.open(map,marker4);
+  });
+  
+  
+//192.168.1.3
+//1
+//00:80:F0:A9:A7:55
+//
+//
+ 
+var infowindow5 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Stinson-Remick' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.696890,-86.237487' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.5' +  ' 00:0B:6B:86:E7:C4' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.5' +  ' 00:15:6D:64:86:F6' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.5&page=9&camname=Stinson-Remick" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.5></a>'+'<br/>'
+ 
+ });
+ 
+  var marker5 = new google.maps.Marker({
+      position: router5, 
+      map: map,
+      title:"Stinson-Remick"
+  });
+  google.maps.event.addListener(marker5, 'click', function() {
+    infowindow5.open(map,marker5);
+  });
+  
+  
+//192.168.0.253
+//1
+//00:80:F0:AF:F8:3D
+//
+//
+ 
+var infowindow7 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Fitz Roof' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.699379,-86.236712' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.7' +  ' 00:0B:6B:86:EB:25' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.7' +  ' 00:15:6D:64:86:AA' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=&ngwaddress=172.30.100.7&page=9&camname=Fitz Roof" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=&ngwaddress=172.30.100.7></a>'+'<br/>'
+ 
+ });
+ 
+  var marker7 = new google.maps.Marker({
+      position: router7, 
+      map: map,
+      title:"Fitz Roof"
+  });
+  google.maps.event.addListener(marker7, 'click', function() {
+    infowindow7.open(map,marker7);
+  });
+  
+  
+//
+//1
+//
+//
+//
+ 
+var infowindow8 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'DPAC' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.694807,-86.236650' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.9' +  ' 00:0B:6B:DC:77:20' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.8' +  ' 00:15:6D:64:9A:03' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.8&page=9&camname=DPAC" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.8></a>'+'<br/>'
+ 
+ });
+ 
+  var marker8 = new google.maps.Marker({
+      position: router8, 
+      map: map,
+      title:"DPAC"
+  });
+  google.maps.event.addListener(marker8, 'click', function() {
+    infowindow8.open(map,marker8);
+  });
+  
+  
+//192.168.0.253
+//1
+//00:80:F0:A9:A7:58
+//
+//
+ 
+var infowindow9 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'OShag' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.700431,-86.235749' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.9' +  ' 00:0B:6B:86:E7:D7' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.9' +  ' 00:15:6D:64:86:E6' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.9&page=9&camname=OShag" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.9></a>'+'<br/>'
+ 
+ });
+ 
+  var marker9 = new google.maps.Marker({
+      position: router9, 
+      map: map,
+      title:"OShag"
+  });
+  google.maps.event.addListener(marker9, 'click', function() {
+    infowindow9.open(map,marker9);
+  });
+  
+  
+//
+//1
+//
+//
+//
+ 
+var infowindow10 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Hayes-Healey' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.700783,-86.237551' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.10' +  ' 06:0B:6B:86:E9:27' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.10' +  ' 06:15:6D:64:87:03' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.10&page=9&camname=Hayes-Healey" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.10></a>'+'<br/>'
+ 
+ });
+ 
+  var marker10 = new google.maps.Marker({
+      position: router10, 
+      map: map,
+      title:"Hayes-Healey"
+  });
+  google.maps.event.addListener(marker10, 'click', function() {
+    infowindow10.open(map,marker10);
+  });
+  
+  
+//192.168.1.253
+//1
+//00:80:F0:A9:A7:EF
+//
+//
+ 
+var infowindow13 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Stepan_Chemistry' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.702086,-86.235816' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.13' +  ' 00:0B:6B:86:EB:4D' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.13' +  ' 00:15:6D:64:86:F0' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.13&page=9&camname=Stepan_Chemistry" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.13></a>'+'<br/>'
+ 
+ });
+ 
+  var marker13 = new google.maps.Marker({
+      position: router13, 
+      map: map,
+      title:"Stepan_Chemistry"
+  });
+  google.maps.event.addListener(marker13, 'click', function() {
+    infowindow13.open(map,marker13);
+  });
+  
+  
+//192.168.0.253
+//1
+//00:80:F0:AB:59:4F
+//
+//
+ 
+var infowindow14 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Jordan' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.700687,-86.231993' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.14' +  ' 00:0B:6B:86:EB:1E' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.14' +  ' 00:15:6D:64:18:35' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.14&page=9&camname=Jordan" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.14></a>'+'<br/>'
+ 
+ });
+ 
+  var marker14 = new google.maps.Marker({
+      position: router14, 
+      map: map,
+      title:"Jordan"
+  });
+  google.maps.event.addListener(marker14, 'click', function() {
+    infowindow14.open(map,marker14);
+  });
+  
+  
+//192.168.0.252
+//1
+//00:80:F0:A9:A7:B8
+//
+//
+ 
+var infowindow16 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Flanner' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.705546,-86.234829' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.16' +  ' 00:0B:6B:86:E8:32' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.16' +  ' 00:15:6D:64:9A:00' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.16&page=9&camname=Flanner" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.16></a>'+'<br/>'
+ 
+ });
+ 
+  var marker16 = new google.maps.Marker({
+      position: router16, 
+      map: map,
+      title:"Flanner"
+  });
+  google.maps.event.addListener(marker16, 'click', function() {
+    infowindow16.open(map,marker16);
+  });
+  
+  
+//192.168.1.253
+//1
+//00:80:F0:A9:A7:BA
+//
+//
+ 
+var infowindow15 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Hesburgh Library' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.702113,-86.234418' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.15' +  ' 00:0B:6B:86:E8:71' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.15' +  ' 00:15:6D:64:86:DE' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.15&page=9&camname=Hesburgh Library" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.15></a>'+'<br/>'
+ 
+ });
+ 
+  var marker15 = new google.maps.Marker({
+      position: router15, 
+      map: map,
+      title:"Hesburgh Library"
+  });
+  google.maps.event.addListener(marker15, 'click', function() {
+    infowindow15.open(map,marker15);
+  });
+  
+  
+//192.168.0.253
+//1
+//00:80:F0:A9:A7:B9
+//
+//
+ 
+var infowindow41 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'DARTS NGW' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '41.699303,-86.237303' + '<br/>' +
+   '<b>Type:</b>' + 'NGW' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' 10.192.100.41' +  ' 00:0B:6B:86:EB:D6' + '<br/>' +
+   //'<b>a address:</b>' + ' 172.30.100.41' +  ' 00:15:6D:64:99:B2' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.233&ngwaddress=172.30.100.41&page=9&camname=DARTS NGW" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.233&ngwaddress=172.30.100.41></a>'+'<br/>'
+ 
+ });
+ 
+  var marker41 = new google.maps.Marker({
+      position: router41, 
+      map: map,
+      title:"DARTS NGW"
+  });
+  google.maps.event.addListener(marker41, 'click', function() {
+    infowindow41.open(map,marker41);
+  });
+  
+  
+//192.168.1.253
+//1
+//
+//
+//
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+var infowindow1 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Niemier' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + '41.699257,-86.237157' + '<br/>' +
+   '<b>Type:</b>' + 'GW' + '<br/>' +
+   '<b>b/g address:</b>' + '10.192.100.1' +  '00:0B:6B:86:E7:EE' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.1' +  ' 00:15:6D:64:96:57' + '<br/>' 
+ 
+ });
+ 
+ 
+var marker1 = new google.maps.Marker({
+      position: router1, 
+      map: map,
+      title:"Niemier",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000' 
+ 
+  });
+google.maps.event.addListener(marker1, 'click', function() {
+    infowindow1.open(map,marker1);
+  });
+  
+  
+  
+//
+//0
+//
+//00:0D:B9:16:F7:0C
+//129.74.152.236
+//
+ 
+ 
+ 
+var infowindow12 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'Curt' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + '41.699842,-86.237613' + '<br/>' +
+   '<b>Type:</b>' + 'GW' + '<br/>' +
+   '<b>b/g address:</b>' + '10.192.100.12' +  '00:0B:6B:86:E7:DA' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.12' +  ' 00:15:6D:64:86:85' + '<br/>' 
+ 
+ });
+ 
+ 
+var marker12 = new google.maps.Marker({
+      position: router12, 
+      map: map,
+      title:"Curt",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000' 
+ 
+  });
+google.maps.event.addListener(marker12, 'click', function() {
+    infowindow12.open(map,marker12);
+  });
+  
+  
+  
+//
+//0
+//
+//00:0D:B9:16:F6:D4
+//129.74.152.234
+//
+ 
+ 
+ 
+var infowindow40 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + 'DARTS GW' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + '41.699308,-86.237439' + '<br/>' +
+   '<b>Type:</b>' + 'GW' + '<br/>' +
+   '<b>b/g address:</b>' + '10.192.100.40' +  '00:0B:6B:86:EB:CE' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.40' +  ' 00:15:6D:64:96:4A' + '<br/>' 
+ 
+ });
+ 
+ 
+var marker40 = new google.maps.Marker({
+      position: router40, 
+      map: map,
+      title:"DARTS GW",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000' 
+ 
+  });
+google.maps.event.addListener(marker40, 'click', function() {
+    infowindow40.open(map,marker40);
+  });
+  
+  
+  
+//
+//0
+//
+//00:0D:B9:16:F5:B4
+//129.74.152.233
+//
+ 
+ 
+  
+  
+  
+  }
+  
+function moveToDarwin() {
+  var darwin = new google.maps.LatLng(-12.461334, 130.841904);
+  map.setCenter(darwin);
+  
+ 
+}
+ 
+</script> 
+ 
+    <style type="text/css"> 
+        h3 {color:#FDD017}
+    </style> 
+ 
+</head> 
+<body onload="initialize()" > 
+  
+  <!--<h3>updated maps</h3>--> 
+ 
+  <div id="map_canvas" style="width: 470px; height: 710px" align=center title="Camera map"></div> 
+  <!--<h3>Click on the points to see more info for each location, and a snapshot if available</h3>--> 
+ 
+  
+  
+</body> 
+</html> 

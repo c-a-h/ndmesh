@@ -1,0 +1,38 @@
+<! This is Sample Code. Panasonic will not be held responsible for damages or loss incurred by using 
+this information. > 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
+<!-- sample2.html PAN/TILT Control Pad, Audio Famere, and Live Image Frame --> 
+<HTML> 
+<HEAD> 
+<TITLE>sample2</TITLE> 
+ 
+ </HEAD> 
+<FRAMESET FRAMEBORDER=0 BORDER=0 FRAMESPACING=0 Scrolling="no" Cols="123,*"> 
+ <FRAMESET ROWS="175,*"> 
+ <!--<!ÑUpper Left?PAN/TILT Control Pad Display Frame --> -->
+ <FRAME BGCOLOR="#C4CEEF" SCROLLING=no SRC="control1.html" NAME="Control"> 
+ <!--<!ÑLower Left?Dummy frame to respond to PAN/TILT Control --> -->
+ <!-- Note?"Message" frame is used to show feedback from "frame/control1.html"--> 
+ <FRAME BGCOLOR="#C4CEEF" SCROLLING=no SRC="http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=nphControlCamera?Direction=" 
+NAME="Message"> 
+ </FRAMESET> 
+ <FRAMESET Rows="24,*"> 
+ <!ÑUpper Right: Audio Frame --> 
+ <FRAME Src="CgiTitle.html" NAME="audio"> 
+ <!-- RIGHT?Live Image Frame --> 
+ <!ÑType CameraÕs URL address in the field to replace "xx.xx.xx.xxx"--> 
+ <!ÑAn Error Message will be displayed if the wrong URL is typed in for "xx.xx.xx.xxx". --> 
+ <FRAME 
+Src="http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/ImageViewer?Mode=Motion&Resolution=320x240&Quality=Standard&Interval=10 
+&Size=STD&RPeriod=0&Sound=Enable" NAME="right"> 
+<NOFRAMES> 
+<BODY> 
+<!ÑMessage for a viewer using an incompatible browser --> 
+ Please Use Appropriate Browser to View the Frame 
+ </BODY> 
+    </NOFRAMES> 
+</FRAMESET> 
+</HTML> 
+ 
+</FRAMESET> 
+</HTML>

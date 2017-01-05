@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ND Mesh Wireless Video Surveillance</title>
+<meta name="keywords" content="notre dame surveillance" />
+<meta name="description" content="View and control cameras on the rooftops of various buildings" />
+<link href="/ndmesh/templatemo_style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+function clearText(field){
+
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+
+}
+</script>
+
+<script type="text/javascript"> 
+document.onkeyup = KeyCheck;       
+ 
+function KeyCheck(e)
+{
+   var KeyID = (window.event) ? event.keyCode : e.keyCode;
+ 
+   switch(KeyID)
+   {
+ 
+      case 37:
+      document.Form1.command.value = "/nphControlCamera?Direction=PanLeft";
+      while(document.Form1.submit()){
+        //do nada
+      }
+      document.Form2.submit();
+        
+      break;
+ 
+      case 38:
+      document.Form1.command.value = "/nphControlCamera?Direction=TiltUp";
+      while(document.Form1.submit()){
+        //do nada
+      }
+      document.Form2.submit();
+      break;
+ 
+      case 39:
+      document.Form1.command.value = "/nphControlCamera?Direction=PanRight";
+      while(document.Form1.submit()){
+        //nada
+      }
+      document.Form2.submit();
+      break;
+ 
+      case 40:
+      document.Form1.command.value = "/nphControlCamera?Direction=TiltDown";
+      while(document.Form1.submit()){
+        // do nada
+      }
+      document.Form2.submit();
+      break;
+   }
+   
+   
+   
+}
+</script> 
+
+<!--[if lt IE 7]>
+<style type="text/css">
+    
+    .templatemo_icon_home { behavior: url(iepngfix.htc); }
+    .templatemo_icon_cube { behavior: url(iepngfix.htc); }
+    .templatemo_icon_tick { behavior: url(iepngfix.htc); }
+    
+</style>
+<![endif]-->
+</head>
+<body>
+
+    <form name=Form1 action=/ndMeshScripts/command.cgi target="dummy">
+        
+        <input type=hidden name=command value="" />
+        <input type=hidden name=gwaddress value="<TMPL_VAR NAME=gwaddr>"></input>
+        <input type=hidden name=ngwaddress value="<TMPL_VAR NAME=ngwaddr>"></input>
+    </form>
+    
+    <form name=Form2 action=/ndMeshScripts/command.cgi target="streaming">
+	<input type=hidden name=command value="/SnapshotJPEG?Resolution=640x480" />
+	<input type=hidden name=gwaddress value="<TMPL_VAR NAME=gwaddr>"></input>
+	<input type=hidden name=ngwaddress value="<TMPL_VAR NAME=ngwaddr>"></input>
+    </form>
+    
+<!--  Free CSS Template designed by TemplateMo.com  -->
+	<div id="templatemo_container">
+		<div id="templatemo_header">
+        	<div id="templatemo_login" align=center>
+		    <TMPL_IF NAME="camname">
+			<TMPL_VAR NAME="camname">
+		    <TMPL_ELSE>
+		    Camera Controls Page
+		    </TMPL_IF>
+
+            </div>
+        </div><!-- End Of Header -->
+        
+        <div id="templatemo_content">
+        	<div id="templatemo_left_content">
+            	<div class="templatemo_menu">
+                	<ul>
+			    <li><a href="/ndmesh/">Home</a></li>
+			    <li><a href="/ndmesh/thumbs.html">Image Gallery</a></li>
+			    <li><a href="/ndmesh/admin/camera.html">Pick A Camera</a></li><br><br>
+			    <li><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>&page=8&camname=<TMPL_VAR NAME=camname>" target=_top>Start Live Streaming</a></li>
+			    <!--<li><a href="http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=320x240&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>" target=streaming>Stop Stream</a></li>-->
+			    <li><a href="/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=640x480&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>" target=streaming>Display Snapshot</a></li>
+                            <li><a href="/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=HomePosition&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>" target=dummy>Home Position</a></li>
+			    <!--<li><a href="thumbs.html">Thumbnails</a></li>-->
+			    <!--<li><a href="http://darts.cse.nd.edu:8080/Plone/reu-summer-2010/wireless-mesh-network-video-surveillance">REU Wiki</a></li>-->
+			    <!--<li><a href="http://snoopy.cse.nd.edu/ndmesh">Old Site</a></li>-->
+
+			</ul>
+                </div>
+            <div class="templatemo_section">
+            	<div class="templatemo_icon_cube">
+                	<h1>Instructions for Camera Control</h1>
+                    <p>
+			PLEASE NOTE THAT VIDEO STREAMING IS ONLY SUPPORTED IN CHROME AND SAFARI<br>
+			There is currently a bug for video streaming in Firefox, it should be resolved in a future release.<br><br>
+			Use the arrows on your keyboard to control the camera's pan/tilt feature.<br><br>
+			The box below will indicate if you have hit the limits of the the pan/tilt feature, otherwise it is normally blank:<br>
+			<iframe name=dummy src="" marginheight=0 marginwidth=0 frameborder=0 height=17 width=120 scrolling=no></iframe> 
+                    </p>
+                </div>
+			</div>
+            <div class="templatemo_section_bottom_line"></div>
+            </div><!-- End Of left Content -->
+
+            <div id="templatemo_right_content">
+				<div id="templatemo_content_area">
+
+
+	    </div><!-- End Of Right Content -->
+			
+
+            
+            <div id="templatemo_right_content_bottom">		
+					<div align=center>
+			<iframe name=streaming src="/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=320x240&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>" marginheight=0 marginwidth=0 width=640 height=480 scrolling=no frameborder=0></iframe>
+			<a onclick="document.Form2.submit();" target=dummy title="Pan Left" href="/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=PanLeft&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>"><img src="/ndmesh/images/left.png" alt="something bad happened" border=none></a>
+                        <a onclick="document.Form2.submit();" target=dummy title="Tilt Up" href="/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=TiltUp&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>"><img src="/ndmesh/images/up.png" alt="something bad happened" border=none></a>
+			
+                        <a onclick="document.Form2.submit();" target=dummy title="Tilt Down" href="/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=TiltDown&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>"><img src="/ndmesh/images/down.png" alt="something bad happened" border=none></a>
+                        <a onclick="document.Form2.submit();" target=dummy title="Pan Right" href="/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=PanRight&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>"><img src="/ndmesh/images/right.png" alt="oh no" border=none></a>
+			<div><a href="/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=640x480&gwaddress=<TMPL_VAR NAME=gwaddr>&ngwaddress=<TMPL_VAR NAME=ngwaddr>" target="streaming" title="Refresh Image"><img src="/ndmesh/images/refresh.png" alt="no image availaile" border=none></a></div>
+			
+			
+			</div>
+                Copyright &#169; 2010 <a href="http://cse.nd.edu">CSE</a>, <a href="http://www.nd.edu">University of Notre Dame</a><br>
+		Credit for this site's design and functionality:<br>
+		Chris Holguin<br>
+		Greg Angle
+            </div>
+	    
+        </div><!-- End Of Content -->
+	
+    </div><!-- End Of Container -->
+    
+	<!--  Free CSS Templates from www.TemplateMo.com  -->
+</body>
+</html>

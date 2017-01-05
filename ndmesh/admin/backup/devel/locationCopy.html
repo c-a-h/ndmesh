@@ -1,0 +1,375 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  function initialize() {
+    var router1 = new google.maps.LatLng(41.699257,-86.237157);
+    var router2 = new google.maps.LatLng(41.700431,-86.235749); 
+    var router3 = new google.maps.LatLng(41.698604,-86.234912); 
+    var router4 = new google.maps.LatLng(41.696169,-86.234998);
+    var router5 = new google.maps.LatLng(41.698348,-86.236457);
+    var router6 = new google.maps.LatLng(41.694807,-86.23665);
+    var router7 = new google.maps.LatLng(41.700783,-86.237551);
+    var router8 = new google.maps.LatLng(41.699842,-86.237613);
+    var router9 = new google.maps.LatLng(41.702086,-86.235816);
+    var router10 = new google.maps.LatLng(41.700687,-86.231993);
+    var router11 = new google.maps.LatLng(41.702113,-86.234418);
+    var router12 = new google.maps.LatLng(41.705546,-86.234829);
+    var router13 = new google.maps.LatLng(41.69689,-86.237487);
+    var router14 = new google.maps.LatLng(41.699379,-86.236712);
+    var router15 = new google.maps.LatLng(41.699303,-86.237303);
+    var router16 = new google.maps.LatLng(41.699308,-86.237439);
+    var centerpoint = new google.maps.LatLng(41.700475,-86.234019);
+
+    var myOptions = {
+      zoom: 16,
+      center: centerpoint,
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+    setTimeout(moveToDarwin, 3000);
+  });
+
+var infowindow1 = new google.maps.InfoWindow({  
+   content: '<b>Location:</b>' + ' FITZ-380' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.699774,-86.237422' + '<br/>' + 
+   '<b>Type:</b>' + ' Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Not Installed' + '<br/>' +
+   '<b>ethernet address:</b>' + ' 129.74.152.236' +  ' 00:0D:B9:16:F7:0C' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.1' +  ' 00:0B:6B:86:E7:EE' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.1' +  ' 00:15:6D:64:96:57' + '<br/>'
+    
+ });   
+
+var infowindow2 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' O-SHAG' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.700431,-86.235749' + '<br/>' +
+   '<b>Type:</b>' + 'Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.9' +  ' 00:0B:6B:86:EB:25' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.9' +  ' 00:15:6D:64:86:AA' + '<br/>'
+
+ });
+
+var infowindow3 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' STADIUM' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.698604,-86.234912' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.2' +  ' 00:0B:6B:86:EB:1D' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.2' +  ' 00:15:6D:64:96:3E' + '<br/>'
+
+ });
+
+var infowindow4 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' LEGENDS' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.696169,-86.234998' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.3' +  ' 00:0B:6B:86:EC:3A' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.3' +  ' 00:15:6D:64:87:00' + '<br/>'
+
+ });
+
+var infowindow5 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' DEBARTOLO' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.698348,-86.236457' + '<br/>' +
+   '<b>Type:</b>' + 'Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.4' +  ' 00:0B:6B:86:E7:FA' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.4' +  ' 00:15:6D:64:86:CC' + '<br/>' +
+   '<b>'+'<a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.4&page=23 target=main><img alt="no image available" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.236&ngwaddress=172.30.100.4></a>'+'<br/>'
+
+ });
+
+var infowindow6 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' DPAC' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.699774,-86.237422' + '<br/>' +
+   '<b>Type:</b>' + ' Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.8' +  ' 00:0B:6B:86:E9:14' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.8' +  ' 00:15:6D:64:A0:D9' + '<br/>'
+
+ });
+
+var infowindow7 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' HAYES-HEALEY' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.700783,-86.237551' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.10' +  ' 00:0B:6B:86:EC:2B' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.10' +  ' 00:15:6D:64:97:14' + '<br/>' +
+   '<b>'+'<a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.10&page=23 target=main><img alt="no image available" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.234&ngwaddress=172.30.100.10></a>'+'<br/>'
+
+ });
+
+var infowindow8 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' FITZ-GW2 (CURT)' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.699854,-86.237251' + '<br/>' +
+   '<b>Type:</b>' + ' Gateway' + '<br/>' +
+   '<b>Camera:</b>' + ' Not Installed' + '<br/>' +
+   '<b>ethernet address:</b>' + ' 129.74.152.234' +  ' 00:0D:B9:16:F6:D4' + '<br/>' +
+      '<b>b/g address:</b>' + ' 10.192.100.12' +  ' 00:0B:6B:86:E7:DA' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.12' +  ' 00:15:6D:64:86:85' + '<br/>'
+
+ });
+
+var infowindow9 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' STEPAN CHEMISTRY' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.702086,-86.235816' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.13' +  ' 00:0B:6B:86:EB:4D' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.13' +  ' 00:15:6D:64:86:F0' + '<br/>'  +
+   '<b>'+'<a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.13&page=23 target=main><img alt="no image available" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.234&ngwaddress=172.30.100.13></a>'+'<br/>'
+
+ });
+
+var infowindow10 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' JORDAN' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.700687,-86.231993' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.14' +  ' 00:0B:6B:86:EB:1E' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.14' +  ' 00:15:6D:64:18:35' + '<br/>'
+
+ });
+
+var infowindow11 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' HESBURGH-LIBRARY' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.702113,-86.234418' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.15' +  ' 00:0B:6B:86:E8:5E' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.15' +  ' 00:15:6D:64:9A:11' + '<br/>'
+
+ });
+
+var infowindow12 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' FLANNER' + '<br/>' +
+   '<b>GPS-Co-ordinates>' + ' 41.705546,-86.234829' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.16' +  ' 00:0B:6B:86:E8:32' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.16' +  ' 00:15:6D:64:9A:00' + '<br/>'
+
+ });
+
+var infowindow13 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' STINSON-REMICK' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.69689,-86.237487' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.5' +  ' 00:0B:6B:86:E7:C4' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.5' +  ' 00:15:6D:64:86:F6' + '<br/>' +
+  '<b>'+'<a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.5&page=23 target=main><img alt="no image available" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.236&ngwaddress=172.30.100.5></a>'+'<br/>'
+
+ });
+
+var infowindow14 = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + ' FITZ-ROOF' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + ' 41.699379,-86.236712' + '<br/>' +
+   '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+   '<b>Camera:</b>' + '  Installed' + '<br/>' +
+   '<b>b/g address:</b>' + ' 10.192.100.7' +  ' 00:0B:6B:86:E9:27' + '<br/>' +
+   '<b>a address:</b>' + ' 172.30.100.7' +  ' 00:15:6D:64:87:03' + '<br/>'
+
+ });
+
+var infowindow15 = new google.maps.InfoWindow({
+  content: '<b>Location:</b>' + 'indoor camera' + '<br/>'+
+  '<b>GPS-Co-ordinates</b>' + ' 41.699303,-86.237303' + '<br/>' +
+  '<b>Type:</b>' + ' Non-Gateway' + '<br/>' +
+  '<b>Camera:</b>' + '  Installed' + '<br/>' +
+  '<b>b/g address:</b>' + ' 10.192.100.41' +  ' 00:0B:6B:86:EB:D6' + '<br/>' +
+  '<b>a address:</b>' + ' 172.30.100.41' +  ' 00:15:6D:64:99:B2' + '<br/>' +
+  '<b>'+'<a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.233&ngwaddress=172.30.100.41&page=23 target=main><img alt="no image available" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.233&ngwaddress=172.30.100.41></a>'+'<br/>'
+
+});
+
+var infowindow16 = new google.maps.InfoWindow({
+  content: '<b>Location:</b>' + 'Practice GW' + '<br/>'+
+  '<b>GPS-Co-ordinates</b>' + ' 41.7,-86.237303' + '<br/>' +
+  '<b>Type:</b>' + ' Gateway' + '<br/>' +
+  '<b>Camera:</b>' + ' Not Installed' + '<br/>' +
+  '<b>b/g address:</b>' + ' 10.192.100.40' +  ' 00:0B:6B:86:EB:CE' + '<br/>' +
+  '<b>a address:</b>' + ' 172.30.100.40' +  ' 00:15:6D:64:96:4A' + '<br/>'
+
+});
+
+  //+'<b>'+'<a href=\"http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=PanLeft&gwaddress=129.74.152.233&ngwaddress=172.30.100.41&snapshot=1\">left </a>'
+  //+'<a href=\"http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/nphControlCamera?Direction=PanRight&gwaddress=129.74.152.233&ngwaddress=172.30.100.41&snapshot=1\"> right</a>'
+  //+'<br/>'
+
+var marker = new google.maps.Marker({
+      position: router1, 
+      map: map,
+      title:"FITZ-GW1, CUSHING",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000' 
+
+  });
+google.maps.event.addListener(marker, 'click', function() {
+    infowindow1.open(map,marker);
+  }); 
+
+  var marker2 = new google.maps.Marker({
+      position: router2, 
+      map: map,
+      title:"O'SHAG"
+  });
+  google.maps.event.addListener(marker2, 'click', function() {
+    infowindow2.open(map,marker2);
+  });
+
+var marker3 = new google.maps.Marker({
+      position: router3,
+      map: map,
+      title:"STADIUM"
+  });
+  google.maps.event.addListener(marker3, 'click', function() {
+    infowindow3.open(map,marker3);
+  });
+
+var marker4 = new google.maps.Marker({
+      position: router4,
+      map: map,
+      title:"LEGENDS"
+  });
+  google.maps.event.addListener(marker4, 'click', function() {
+    infowindow4.open(map,marker4);
+  });
+var marker5 = new google.maps.Marker({
+      position: router5,
+      map: map,
+      title:"DEBARTOLO"
+  });
+  google.maps.event.addListener(marker5, 'click', function() {
+    infowindow5.open(map,marker5);
+  });
+var marker6 = new google.maps.Marker({
+      position: router6,
+      map: map,
+      title:"DPAC"
+  });
+  google.maps.event.addListener(marker6, 'click', function() {
+    infowindow6.open(map,marker6);
+  });
+var marker7 = new google.maps.Marker({
+      position: router7,
+      map: map,
+      title:"HAYES-HEALEY"
+  });
+  google.maps.event.addListener(marker7, 'click', function() {
+    infowindow7.open(map,marker7);
+  });
+var marker8 = new google.maps.Marker({
+      position: router8,
+      map: map,
+      title:"FITZ-GW2(CURT)",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000'
+  });
+  google.maps.event.addListener(marker8, 'click', function() {
+    infowindow8.open(map,marker8);  });
+
+var marker9 = new google.maps.Marker({
+      position: router9,
+      map: map,
+      title:"STEPAN CHEMISTRY"
+  });
+  google.maps.event.addListener(marker9, 'click', function() {
+    infowindow9.open(map,marker9);
+  });
+var marker10 = new google.maps.Marker({
+      position: router10,
+      map: map,
+      title:"JORDAN"
+  });
+  google.maps.event.addListener(marker10, 'click', function() {
+    infowindow10.open(map,marker10);
+  });
+
+var marker11 = new google.maps.Marker({
+      position: router11,
+      map: map,
+      title:"HESBURGH-LIBRARY"
+  });
+  google.maps.event.addListener(marker11, 'click', function() {
+    infowindow11.open(map,marker11);
+  });
+
+var marker12 = new google.maps.Marker({
+      position: router12,
+      map: map,
+      title:"FLANNER"
+  });
+  google.maps.event.addListener(marker12, 'click', function() {
+    infowindow12.open(map,marker12);
+  });
+
+var marker13 = new google.maps.Marker({
+      position: router13,
+      map: map,
+      title:"STINSON-REMICK"
+  });
+  google.maps.event.addListener(marker13, 'click', function() {
+    infowindow13.open(map,marker13);
+  });
+
+
+var marker14 = new google.maps.Marker({
+      position: router14,
+      map: map,
+      title:"FITZ - ROOF"
+  });
+  google.maps.event.addListener(marker14, 'click', function() {
+    infowindow14.open(map,marker14);
+  });
+  
+var marker15 = new google.maps.Marker({
+      position: router15,
+      map: map,
+      title:"Indoor camera"
+  });
+  google.maps.event.addListener(marker15, 'click', function() {
+    infowindow15.open(map,marker15);
+  });
+
+var marker16 = new google.maps.Marker({
+      position: router16,
+      map: map,
+      title:"Practice GW",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000'
+  });
+  google.maps.event.addListener(marker16, 'click', function() {
+    infowindow16.open(map,marker16);
+  });
+  
+  }
+  
+function moveToDarwin() {
+  var darwin = new google.maps.LatLng(-12.461334, 130.841904);
+  map.setCenter(darwin);
+  
+
+}
+
+</script>
+
+    <style type="text/css">
+        h3 {color:#FDD017}
+    </style>
+
+</head>
+<body onload="initialize()" bgcolor=#151B54>
+  
+  <!--<h3>updated maps</h3>-->
+  <center>
+  <div id="map_canvas" style="width: 650px; height: 750px" align=center title="Camera map"></div>
+  <h3>Click on the points to see more info for each location, and a snapshot if available</h3>
+  </center>
+  
+  
+</body>
+</html>

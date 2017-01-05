@@ -1,0 +1,155 @@
+body { 
+  font-family: Verdana, Arial, Helvetica, Sans-Serif;
+  font-size: 10pt;
+  text-align: left;
+  color: #272a80;
+}
+
+h1 { 
+  font-size: 16pt;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  color: #272a80;
+}
+
+h2 { 
+  font-size: 14pt;
+  font-weight: bold;
+  color: #69c;
+  clear: both;
+}
+
+h3 { 
+  font-size: 12pt;
+  font-weight: bold;
+  color: #69c;
+  clear: both;
+}
+
+h4 { 
+  font-weight: bold;
+  font-size: 11pt;
+  clear: both;
+}
+table { 
+  margin-bottom: 0.5em;
+  font-size: 10pt;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+th { 
+  background-color: #ccc;
+  border: 1px solid #ebebeb;
+  padding: 5px;
+}
+
+td { 
+  padding: 5px;
+}
+
+tr.odd { 
+  background-color: #ffffff;
+}
+
+tr.even { 
+  background-color: #ebebeb;
+}
+
+.http { background-color: #ccc; }
+.jpeg-mand { background-color: #f0f090; }
+.jpeg-comm { background-color: #69c; }
+.jptables { background-color: #f0afaf; }
+.audio { background-color: #ebebeb; }
+
+
+img { 
+  border-style: none;
+}
+
+.nav { 
+  color: #272a80;
+  text-align: left;
+  border-top: 0.15em solid #ccc;
+  padding-top: 0.7em;
+  margin-top: 1.5em;
+  border-bottom: 0.15em solid #ccc;
+  padding-bottom: 0.9em;
+  margin-bottom: 1.5em;
+}
+
+.http-api {  
+  margin-left: 2em;
+  font-family: monospace;
+}
+
+.rule {  
+  padding: 0.5em 2em 0.5em 2em;
+  border: 0.15em solid #69c;
+}
+
+.struct, .toc { 
+  background-color: #ebebeb;
+  padding: 0.5em 1em 0.5em 0.5em;
+  margin-left: 0em;
+}
+
+ul.toc { 
+  list-style-type: none;
+}
+.toc ul { 
+  list-style-type: none;
+}
+
+a:link { 
+  color: #272a80; 
+}
+a:hover { 
+  color: #69c; 
+}
+
+
+
+div {
+   font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+div.qindex {
+   width: 100%;
+   background-color: #eeeeff;
+   border: 1px solid #b0b0b0;
+   text-align: center;
+   margin: 2px;
+   padding: 2px;
+   line-height: 140%;
+}
+
+div.qfooter {
+   float: right;
+   background-color: #eeeeff;
+   border: 1px solid #b0b0b0;
+   text-align: center;
+   margin: 2px;
+   padding: 2px;
+   line-height: 140%;
+}
+
+a.qindex {
+       text-decoration: none;
+       font-weight: bold;
+       color: #1A419D;
+       margin: 10px;
+}
+a.qindex:hover {
+       color: #69c;
+}
+
+a.qindexHL {
+   text-decoration: none;
+   font-weight: bold;
+   background-color: #6666cc;
+   color: #ffffff;
+   border: 1px double #9295C2;
+}

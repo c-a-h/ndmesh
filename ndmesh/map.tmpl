@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  function initialize() {
+  <tmpl_loop name=first>
+    var router<tmpl_var name=router_num> = new google.maps.LatLng(<tmpl_var name=latitude>,<tmpl_var name=longitude>);
+    //<tmpl_var name=name>
+    //<tmpl_var name=pref_gw>
+    //<tmpl_var name=camera_ip>
+    //<tmpl_var name=a_rad_addr>
+    //<tmpl_var name=router_num>
+    //<tmpl_var name=type>
+    //<tmpl_var name=camera_mac>
+    //<tmpl_var name=eth_mac_addr>
+    //<tmpl_var name=eth_ip_addr>
+    //<tmpl_var name=bg_mac_addr>
+    //<tmpl_var name=a_mac_addr>
+    //<tmpl_var name=bg_rad_addr>
+    //<tmpl_var name=has_camera>
+  </tmpl_loop>
+    var centerpoint = new google.maps.LatLng(41.700475,-86.234019);
+    var myOptions = {
+      zoom: 16,
+      center: centerpoint,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+       mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID]
+      }
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+    setTimeout(moveToDarwin, 3000);
+  });
+  
+  
+  
+<tmpl_loop name=ngw>
+var infowindow<tmpl_var name=router_num> = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + '<tmpl_var name=name>' + '<br/>' +
+   //'<b>GPS-Co-ordinates</b>' + '<tmpl_var name=latitude>,<tmpl_var name=longitude>' + '<br/>' +
+   '<b>Type:</b>' + '<tmpl_var name=type>' + '<br/>' +
+   //'<b>Camera:</b>' + '  Installed' + '<br/>' +
+   //'<b>b/g address:</b>' + ' <tmpl_var name=bg_rad_addr>' +  ' <tmpl_var name=bg_mac_addr>' + '<br/>' +
+   //'<b>a address:</b>' + ' <tmpl_var name=a_rad_addr>' +  ' <tmpl_var name=a_mac_addr>' + '<br/>' +
+  '<b>'+'<a href="/ndMeshScripts/genCamControl.cgi?gwaddress=<tmpl_var name=pref_gw>&ngwaddress=<tmpl_var name=a_rad_addr>&page=9&camname=<tmpl_var name=name>" target="_top"><img width=192 height=144 alt="no image available" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=<tmpl_var name=pref_gw>&ngwaddress=<tmpl_var name=a_rad_addr>></a>'+'<br/>'
+
+ });
+
+  var marker<tmpl_var name=router_num> = new google.maps.Marker({
+      position: router<tmpl_var name=router_num>, 
+      map: map,
+      title:"<tmpl_var name=name>"
+  });
+  google.maps.event.addListener(marker<tmpl_var name=router_num>, 'click', function() {
+    infowindow<tmpl_var name=router_num>.open(map,marker<tmpl_var name=router_num>);
+  });
+  
+  
+//<tmpl_var name=camera_ip>
+//<tmpl_var name=has_camera>
+//<tmpl_var name=camera_mac>
+//<tmpl_var name=eth_mac_addr>
+//<tmpl_var name=eth_ip_addr>
+</tmpl_loop>
+
+
+
+
+<tmpl_loop name=gw>
+
+var infowindow<tmpl_var name=router_num> = new google.maps.InfoWindow({
+   content: '<b>Location:</b>' + '<tmpl_var name=name>' + '<br/>' +
+   '<b>GPS-Co-ordinates</b>' + '<tmpl_var name=latitude>,<tmpl_var name=longitude>' + '<br/>' +
+   '<b>Type:</b>' + '<tmpl_var name=type>' + '<br/>' +
+   '<b>b/g address:</b>' + '<tmpl_var name=bg_rad_addr>' +  '<tmpl_var name=bg_mac_addr>' + '<br/>' +
+   '<b>a address:</b>' + ' <tmpl_var name=a_rad_addr>' +  ' <tmpl_var name=a_mac_addr>' + '<br/>' 
+
+ });
+
+
+var marker<tmpl_var name=router_num> = new google.maps.Marker({
+      position: router<tmpl_var name=router_num>, 
+      map: map,
+      title:"<tmpl_var name=name>",
+      icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|33FFFF|000000' 
+
+  });
+google.maps.event.addListener(marker<tmpl_var name=router_num>, 'click', function() {
+    infowindow<tmpl_var name=router_num>.open(map,marker<tmpl_var name=router_num>);
+  });
+  
+  
+  
+//<tmpl_var name=camera_ip>
+//<tmpl_var name=has_camera>
+//<tmpl_var name=camera_mac>
+//<tmpl_var name=eth_mac_addr>
+//<tmpl_var name=eth_ip_addr>
+//<tmpl_var name=pref_gw>
+
+</tmpl_loop>
+  
+  
+  
+  }
+  
+function moveToDarwin() {
+  var darwin = new google.maps.LatLng(-12.461334, 130.841904);
+  map.setCenter(darwin);
+  
+
+}
+
+</script>
+
+    <style type="text/css">
+        h3 {color:#FDD017}
+    </style>
+
+</head>
+<body onload="initialize()" >
+  
+  <!--<h3>updated maps</h3>-->
+
+  <div id="map_canvas" style="width: 470px; height: 710px" align=center title="Camera map"></div>
+  <!--<h3>Click on the points to see more info for each location, and a snapshot if available</h3>-->
+
+  
+  
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ND Mesh Wireless Video Surveillance</title>
+<meta name="keywords" content="notre dame surveillance" />
+<meta name="description" content="View and control cameras on the rooftops of various buildings" />
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+function clearText(field){
+
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+
+}
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var timeDelay = 5; // change delay time in seconds
+var Pix = new Array
+("images/pic1.jpeg" 
+,"images/pic2.jpeg" 
+,"images/pic3.jpeg" 
+,"images/pic4.jpeg" 
+);
+var howMany = Pix.length;
+timeDelay *= 500;
+var PicCurrentNum = 0;
+var PicCurrent = new Image();
+PicCurrent.src = Pix[PicCurrentNum];
+function startPix() {
+setInterval("slideshow()", timeDelay);
+}
+function slideshow() {
+PicCurrentNum++;
+if (PicCurrentNum == howMany) {
+PicCurrentNum = 0;
+}
+PicCurrent.src = Pix[PicCurrentNum];
+document["ChangingPix"].src = PicCurrent.src;
+}
+//  End -->
+</script>
+
+<!--[if lt IE 7]>
+<style type="text/css">
+    
+    .templatemo_icon_home { behavior: url(iepngfix.htc); }
+    .templatemo_icon_cube { behavior: url(iepngfix.htc); }
+    .templatemo_icon_tick { behavior: url(iepngfix.htc); }
+    
+</style>
+<![endif]-->
+</head>
+<body onload="startPix()">
+<!--  Free CSS Template designed by TemplateMo.com  -->
+	<div id="templatemo_container">
+		<div id="templatemo_header">
+        	<div id="templatemo_login">
+		    Wireless Video Surveillance
+            </div>
+        </div><!-- End Of Header -->
+        
+        <div id="templatemo_content">
+        	<div id="templatemo_left_content">
+            	<div class="templatemo_menu">
+                	<ul>
+						<li><a href="index.html">Home</a></li>
+						<!--<li><a href="map.html">Map</a></li>-->
+						<li><a href="thumbs.html" class="current">Image Gallery</a></li>
+						<li><a href="/ndmesh/admin/camera.html">Video/Camera Controls</a></li>
+                                                <li><a href="about.html">About NDmesh</a></li>
+						<!--<li><a href="http://darts.cse.nd.edu:8080/Plone/reu-summer-2010/wireless-mesh-network-video-surveillance">REU Wiki</a></li>-->
+						<!--<li><a href="http://snoopy.cse.nd.edu/ndmesh/old">Old Site</a></li>-->
+					</ul>
+                </div>
+            <div class="templatemo_section">
+            	<div class="templatemo_icon_cube">
+                	<h1>Directions</h1>
+                    <p>
+                    	Click the images for further control over the corresponding camera, including an option for live video streaming.<br><br>
+			A broken image means the camera is currently down or inaccessible on the mesh network.
+                    </p>
+                </div>
+			</div>
+            <div class="templatemo_section_bottom_line"></div>
+
+
+            <div class="templatemo_section">
+            	<div class="templatemo_icon_home">
+					<h1>Snapshots</h1>
+                    <p>
+                    	<img alt="various snapshots" title="Scrolling Snapshots" src="images/pic1.jpeg" name="ChangingPix" width=192 height=144>
+                    </p>
+		    <br>
+
+                </div>
+			</div>
+            <div class="templatemo_section_bottom_line"></div>
+
+            </div><!-- End Of left Content -->
+            <div id="templatemo_right_content">
+				<div id="templatemo_content_area">
+                	<div align=center class="templatemo_title">
+                    	Image Gallery
+                    </div>
+			<p>
+			<table width=390 cellspacing=10 cellpadding=10>
+			    <tr>
+				<td><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.233&ngwaddress=172.30.100.41&page=9&camname=Indoor%20Camera" target="_top"><img border=none alt="172.30.100.41 -no image available" title="172.30.100.41" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.233&ngwaddress=172.30.100.41 height=144 width=192>Indoor Cam</a></td>
+				<td><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.4&page=9&camname=Debartolo" target="_top"><img border=none alt="172.30.100.4 -no image available" title="172.30.100.4" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.4 height=144 width=192>Debartolo</a></td>
+			    </tr>
+			    <tr>
+				<td><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.5&page=9&camname=Stinson-Remick" target="_top"><img border=none alt="172.30.100.5 -no image available" title="172.30.100.5" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.236&ngwaddress=172.30.100.5 height=144 width=192>Stinson-Remick</a></td>
+				<td><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.10&page=9&camname=Hayes-Healey" target="_top"><img border=none alt="172.30.100.10 -no image available" title="172.30.100.10" src=/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.10 height=144 width=192>Hayes-Healey</a></td>
+			    </tr>
+			    <tr>
+				<td><a href="/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.234&ngwaddress=172.30.100.13&page=9&camname=Stepan%20Chemistry" target="_top"><img border=none alt="172.30.100.13 -no image available" title="172.30.100.13" src="/cgi-bin/ndMeshScripts/snapshot.cgi?resolution=1&gwaddress=129.74.152.234&ngwaddress=172.30.100.13" height=144 width=192>Stepan Chemistry</a></td>
+                                <!--<td onClick="document.location.href='http://google.com';" style="cursor:pointer;"><img border=none alt="172.30.100.13 -no image available" title="172.30.100.13" src=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.234&ngwaddress=172.30.100.13>Stepan</td>-->
+				<!--<td onClick="document.location.href='http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControl.cgi?gwaddress=129.74.152.236&ngwaddress=172.30.100.5&page=23';" style="cursor:pointer;"><iframe width=192 height=144 scrolling=no frameborder=0 src="http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/command.cgi?command=/SnapshotJPEG?Resolution=192x144&gwaddress=129.74.152.236&ngwaddress=172.30.100.5"</iframe></td>-->
+			    </tr>
+			</table>
+			</p>
+			<!--<iframe name=main frameborder=0 src="http://snoopy.cse.nd.edu/ndmesh/locationCopy.html" width=550 height=750 scrolling=no></iframe>-->
+
+            </div><!-- End Of Right Content -->
+            <div id="templatemo_right_content_bottom">
+            	Copyright &#169; 2010 <a href="http://cse.nd.edu">CSE</a>, <a href="http://www.nd.edu">University of Notre Dame</a><br>
+		Credit for this site's design and functionality:<br>
+		Chris Holguin<br>
+		Greg Angle
+            </div>
+	    
+        </div><!-- End Of Content -->
+    </div><!-- End Of Container -->
+	<!--  Free CSS Templates from www.TemplateMo.com  -->
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+<body>
+<h2>this is a test</h2>
+<tmpl_var name=test>
+<h3>here's the loop</h3>
+<tmpl_loop name=info>
+<h4>begin new camera</h4>
+loop number #<tmpl_var name=@row> <br>
+  <tmpl_var name=name><br><br>
+  <input type=hidden value="<tmpl_var name=longitude>"> somthing is hidden here<br>
+  
+  <tmpl_var name=pref_gw><br>
+  <tmpl_var name=camera_ip><br>
+  <tmpl_var name=a_rad_addr><br>
+  <tmpl_var name=router_num><br>
+  <tmpl_var name=type><br>
+  <tmpl_var name=camera_mac><br>
+  <tmpl_var name=latitude><br>
+
+
+  <tmpl_var name=eth_mac_addr><br>
+  <tmpl_var name=eth_ip_addr><br>
+  <tmpl_var name=bg_mac_addr><br>
+  <tmpl_var name=a_mac_addr><br>
+  <tmpl_var name=bg_rad_addr><br>
+  <tmpl_var name=has_camera><br>
+<h4>end camera</h4>
+</tmpl_loop>
+
+</body>
+</html>

@@ -1,0 +1,1493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> 
+ 
+<head> 
+	<title>MOBOTIX MxPEG ActiveX Demo Page</title> 
+	<link rel="stylesheet" href="mxsdk.css" type="text/css"> 
+</head> 
+<body> 
+<h2>MOBOTIX MxPEG ActiveX Demo Page and Interface Description</h2> 
+ 
+<p>Viewing this HTML page in Internet Explorer is the easiest way to
+install the <a href="../paks/MxPEG_ActiveX.cab">MxPEG ActiveX component</a> 
+(MxPEG OCX) on your computer. You may be required to install it
+manually, though, depending on your security settings.</p> 
+ 
+<p>The version number of this ActiveX component is
+<strong>1.6.3.0</strong>.</p> 
+ 
+<p>Once the component is installed, it is available to other tools
+like IDEs for creating Windows GUI applications.</p> 
+ 
+<p>In the tables below, the component's properties, methods, and
+events are explained. Please also look at the source code of this HTML
+page in order to get some hints on how to integrate the component into
+your IE-based application.</p> 
+ 
+<p class="rule">Please note that the dynamic contents (ActiveX
+control, forms) of this page are only working in Internet Explorer for
+Windows, and only if your security settings permit unsigned ActiveX
+controls and Javascript.</p> 
+ 
+ 
+<h2>MxPEG ActiveX Control</h2> 
+<!--
+ 
+ 
+ 
+ 
+--> 
+<OBJECT id=mxpeg1 
+        name="mxpeg1"
+        style="width:400px;height:300px;border:2px solid #000000;"
+        classid='clsid:304171C0-65EA-4B51-B5D9-93A311E26EB1'
+		codebase='MxPEG_ActiveX.cab#version=1,6,3.0'
+> 
+ 
+  <PARAM NAME="IP" VALUE=""> 
+  <PARAM NAME="Port" VALUE="8081"> 
+  <PARAM NAME="SSL" VALUE="0"> 
+  <PARAM NAME="Audio" VALUE="1"> 
+  <PARAM NAME="AudioToCam" VALUE="0"> 
+  <PARAM NAME="AudioFullduplex" VALUE="0"> 
+  <PARAM NAME="Framerate" VALUE="15"> 
+  <PARAM NAME="EnablePopupmenu" VALUE="1"> 
+  <PARAM NAME="EnableClickInterface" VALUE="0"> 
+  <PARAM NAME="DisplayStrategy" VALUE="minimum delay"> 
+  <PARAM NAME="Proxy" VALUE=""> 
+  <PARAM NAME="ProxyPort" VALUE=""> 
+  <PARAM NAME="ScaleImage" VALUE="Auto"> 
+  <PARAM NAME="AccessLevel" VALUE="User"> 
+  <PARAM NAME="Username" VALUE=""> 
+  <PARAM NAME="Password" VALUE=""> 
+  <PARAM NAME="BackColor" VALUE="0x00ff0000"> 
+  <PARAM NAME="Player" VALUE="0"> 
+  <PARAM NAME="Live" VALUE="1"> 
+  <PARAM NAME="UnLockCode" VALUE=""> 
+  <PARAM NAME="FireEventOnFinishedFrame" VALUE="0"> 
+  <PARAM NAME="maxdelay" VALUE="15"> 
+  <PARAM NAME="GoodRender" VALUE="1"> 
+ 
+</OBJECT> 
+ 
+ 
+ 
+<form name=form1> 
+<table> 
+<tr> 
+	<td> </td> 
+	<td><span id=message style='color:red;font-weight:bold;visibility=hidden;'>message</span></td> 
+	<td> <input id=msgclear type=button style="WIDTH: 100px;visibility=hidden;" value=OK onclick='clearmessage()'> 
+</tr> 
+ 
+<tr> 
+  <td> Refresh the form below every </td> 
+  <td> <input name=UpdateInterval1 value='' style="WIDTH: 250px"> </td> 
+  <td> <input type=button style="WIDTH: 100px" value=Set onclick=' 
+	      clearInterval(updateIntervalId);
+	      updateInterval = this.form.UpdateInterval1.value;
+	      updateIntervalId = setInterval("updatePeriodic();",updateInterval);
+	      '> </td> 
+  <td> milliseconds. In order to see up-to-date player/clip
+    information, you may set a shorter referesh period of 1000 ms
+    once you've successfully connected to a camera / specified a clip URL.
+   </td> 
+</tr> 
+<tr> 
+	<td colspan=2> Reset fields </td> 
+	<td> <input type=button style="WIDTH: 100px" value=Reset onclick='resetfields()'> </td> 
+</tr> 
+ 
+<tr> 
+	<td colspan='4'>&nbsp;</td> 
+</tr> 
+ 
+<tr> 
+	<th> Parameter </th> 
+	<th> Value </th> 
+	<th> Set </th> 
+	<th> Valid values (see <a href="#interface">below</a> for further explanation)</th> 
+</tr> 
+ 
+<tr> 
+	<td> Mode </td> 
+	<td> <SELECT name=mode1 style="WIDTH: 250px" size=1 ID="id_Mode" onchange='if (this.form.mode1.value=="Live") {document.all.mxpeg1.Live=1;} else if (this.form.mode1.value=="Player") {document.all.mxpeg1.Player=1;} else if (this.form.mode1.value=="HttpClip") {document.all.mxpeg1.HttpClip=""} else {};ShowOrHide(this);'> 
+			<OPTION selected value="Live">Live</OPTION> 
+			<OPTION value="Player">Player</OPTION> 
+			<OPTION value="HttpClip">HttpClip</OPTION> 
+		</SELECT> 
+	</td> 
+	<td></td> 
+	<td></td> 
+</tr> 
+<TBODY ID="sohCameraConnect"> 
+	<tr> 
+		<td> IP </td> 
+		<td> <input name=ip1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.IP=this.form.ip1.value;'> </td> 
+		<td> Examples for IP addresses: 192.168.5.111, house.home.at</td> 
+	</tr> 
+	<tr> 
+		<td> Port </td> 
+		<td> <input name=port1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.Port=this.form.port1.value;'> </td> 
+		<td> 1..65535 </td> 
+	</tr> 
+	<tr> 
+		<td> SSL </td> 
+		<td> <input type=checkbox name=ssl onmouseup='document.all.mxpeg1.SSL=!document.all.form1.ssl.status;' > </td> 
+		<td></td> 
+		<td> true or false </td> 
+	</tr> 
+	<tr> 
+		<td> AccessLevel </td> 
+		<td> <SELECT name=accesslevel1 style="WIDTH: 250px" size=1 onchange='document.all.mxpeg1.AccessLevel=this.form.accesslevel1.value;'> 
+				<OPTION selceted value=User>User</OPTION> 
+			 <OPTION value=Guest>Guest</OPTION> 
+			</SELECT> 
+		</td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Username </td> 
+		<td> <input name=username1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.Username=this.form.username1.value;'> </td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Password </td> 
+		<td> <input name=passwd1 type=password value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.Password=this.form.passwd1.value;'> </td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Login Prompt </td> 
+		<td> <input name=loginprompt value='3' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.LoginPrompt=this.form.loginprompt.value;'> </td> 
+		<td> </td> 
+	</tr> 
+</TBODY> 
+<TBODY ID="sohLiveOnly"> 
+	<tr> 
+		<td> AudioToCam </td> 
+		<td> <SELECT name=audiotocam1 style="WIDTH: 250px" size=1 onchange='document.all.mxpeg1.AudioToCam=this.form.audiotocam1.value;'> 
+				<OPTION selected value="0">Off</OPTION> 
+				<OPTION value="1">On if right mouse button is held down</OPTION> 
+				<OPTION value="2">On</OPTION> 
+			</SELECT> 
+		</td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+		<td> ChangeCursorToMicro </td> 
+		<td> <input type=checkbox name=changeCursorToMicro onmouseup='document.all.mxpeg1.ChangeCursorToMicro=!document.all.form1.changeCursorToMicro.status;' > </td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> AudioFullduplex </td> 
+		<td> <input type=checkbox name=audiofullduplex1 onmouseup='document.all.mxpeg1.AudioFullduplex=!document.all.form1.audiofullduplex1.status;' > </td> 
+		<td></td> 
+		<td>note that there is no acoustic echo cancellation yet</td> 
+	</tr> 
+	<tr> 
+		<td> Framerate </td> 
+		<td> <input name=framerate1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.Framerate=this.form.framerate1.value;'> </td> 
+		<td> -1,0,1,...,50 , -1=pause, 0=fast as possible </td> 
+	</tr> 
+	<tr> 
+		<td> DecodeHoldTimeout </td> 
+		<td> <input name=DecodeHoldTimeout1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.DecodeHoldTimeout=this.form.DecodeHoldTimeout1.value;'> </td> 
+		<td> 500..10000 ms</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> ConnectionTimeout </td> 
+		<td> <input name=ConnectionTimeout1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.ConnectionTimeout=this.form.ConnectionTimeout1.value;'> </td> 
+		<td> 500..10000 ms </td> 
+	</tr> 
+	<tr> 
+		<td> DisplayStrategy </td> 
+		<td> <input name=dispstrat1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.DisplayStrategy=this.form.dispstrat1.value;'> </td> 
+		<td> "minimum delay", "smooth display" </td> 
+	</tr> 
+	<tr> 
+		<td> ClickInterface </td> 
+		<td> <input type=checkbox name=clickinterface1 onmouseup='document.all.mxpeg1.EnableClickInterface=!document.all.form1.clickinterface1.status;' > </td> 
+		<td> </td> 
+		<td> Enable / disable left mouse click </td> 
+	</tr> 
+	<tr> 
+		<td> WheelZoomLock </td> 
+		<td> <input type=checkbox name=wheelzoomlock1 onmouseup='document.all.mxpeg1.WheelZoomLock=!document.all.form1.wheelzoomlock1.status;' > </td> 
+		<td> </td> 
+		<td> Disable zoom with the mouse wheel. </td> 
+	</tr> 
+</TBODY> 
+<TBODY ID="sohPlayerControl"> 
+	<tr> 
+		<td> Player Control </td> 
+		<td align=center> 
+			<input type=button style="WIDTH: 30px;" value="<" onclick='document.all.mxpeg1.navPlayRev();'> 
+			<input type=button style="WIDTH: 30px;" value="|<" onclick='document.all.mxpeg1.navGotoPrev();'> 
+			<input type=button style="WIDTH: 40px;" value="Stop" onclick='document.all.mxpeg1.navStop();'> 
+			<input type=button style="WIDTH: 30px;" value=">|" onclick='document.all.mxpeg1.navGotoNext();'> 
+			<input type=button style="WIDTH: 30px;" value=">" onclick='document.all.mxpeg1.navPlay();'> 
+ 
+			<br> 
+ 
+			<input type=button style="WIDTH: 30px;" value="|<<" onclick='document.all.mxpeg1.navGotoBegin();'> 
+			<input type=button style="WIDTH: 30px;" value="<<" onclick='document.all.mxpeg1.navPlayREW();'> 
+			<input type=button style="WIDTH: 30px;" value=">>" onclick='document.all.mxpeg1.navPlayFF();'> 
+			<input type=button style="WIDTH: 30px;" value=">>|" onclick='document.all.mxpeg1.navGotoEnd();'> 
+		</td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+</TBODY> 
+<TBODY ID="sohPlayerCamera"> 
+	<tr> 
+		<td>Sequence No</td> 
+		<td> 
+			<span id='playerbar'></span> 
+		</td> 
+		<td> 
+			<input type=button style="WIDTH: 100px" value=Current onclick='showPosition( document.all.mxpeg1.EventNo, document.all.mxpeg1.DMANo );'> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td>Goto Sequence</td> 
+		<td> 
+			<input name=eventno1 value='' style="WIDTH: 250px"/> 
+		</td> 
+		<td> 
+			<input type=button style="WIDTH: 100px" value=Go onclick='document.all.mxpeg1.navGotoEventNo(document.all.form1.eventno1.value,0);'> 
+		</td> 
+	</tr> 
+	<tr> 
+		<td> StoryMode </td> 
+		<td> <SELECT name=StoryMode1 style="WIDTH: 250px" size=1 onchange='document.all.mxpeg1.StoryMode=this.form.StoryMode1.value;'> 
+				<OPTION selected value="0">Events only</OPTION> 
+				<OPTION value="1">All</OPTION> 
+				<OPTION value="2">Sequence only</OPTION> 
+			</SELECT> 
+		</td> 
+	</tr> 
+</TBODY> 
+<TBODY ID="sohClipOnly"> 
+	<tr> 
+		<td> Clip URLs </td> 
+		<td> <input name=HttpClip value='http://192.168.2.152/tanja.mxg' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.HttpClip=this.form.HttpClip.value;'> </td> 
+		<td> Examples for HttpClip(s): http://server.home/Clips/Clip1.mxg,http://server.home/Clips/Clip2.mxg</td> 
+	</tr> 
+	<tr> 
+		<td> Clips loaded </td> 
+		<td> <span id='clipsloaded'></span> </td> 
+		<td> </td> 
+		<td> Clips loaded of total</td> 
+	</tr> 
+	<tr> 
+		<td> Frames no </td> 
+		<td> <span id='framecount'></span> </td> 
+		<td> </td> 
+		<td> Frames in clips </td> 
+	</tr> 
+	<tr> 
+		<td> TimeSpan</td> 
+		<td> <span id='timespan'></span> </td> 
+		<td> </td> 
+		<td> Time available</td> 
+	</tr> 
+	<tr> 
+		<td> Goto frame </td> 
+		<td> <input name=gotoFrameNo1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Goto onclick='var frameNo=this.form.gotoFrameNo1.value; if (frameNo!="") {document.all.mxpeg1.GotoFrameNo(frameNo);};'> </td> 
+		<td> Goto frame number</td> 
+	</tr> 
+	<tr> 
+		<td> Goto Time </td> 
+		<td> <input name=gotoTime1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Goto onclick='var frameTime=this.form.gotoTime1.value; if (frameTime!="") {document.all.mxpeg1.GotoTimeStr(frameTime);};'> </td> 
+		<td> Goto frame number</td> 
+	</tr> 
+	<tr> 
+		<td> PlayClipInLoop </td> 
+		<td> <input type=checkbox name=loop1 onmouseup='document.all.mxpeg1.PlayClipInLoop=!document.all.form1.loop1.status;' > </td> 
+	</tr> 
+ 
+</TBODY> 
+<script type='text/javascript'> 
+	function ShowOrHide(obj) {
+		var tbody_CC = document.getElementById('sohCameraConnect');
+		var tbody_LO = document.getElementById('sohLiveOnly');
+		var tbody_PC = document.getElementById('sohPlayerControl');
+		var tbody_PK = document.getElementById('sohPlayerCamera');
+		var tbody_CO = document.getElementById('sohClipOnly');
+		if (!tbody_CC || !tbody_LO || !tbody_PC || !tbody_PK || !tbody_CO || !obj)
+			return;
+		if (obj.value == "Live") {
+			tbody_CC.style.display = '';
+			tbody_LO.style.display = '';
+			tbody_PC.style.display = 'none';
+			tbody_PK.style.display = 'none';
+			tbody_CO.style.display = 'none';
+		} else if (obj.value == "Player") {
+			tbody_CC.style.display = '';
+			tbody_LO.style.display = 'none';
+			tbody_PC.style.display = '';
+			tbody_PK.style.display = '';
+			tbody_CO.style.display = 'none';
+		} else if (obj.value == "HttpClip") {
+			tbody_CC.style.display = 'none';
+			tbody_LO.style.display = 'none';
+			tbody_PC.style.display = '';
+			tbody_PK.style.display = 'none';
+			tbody_CO.style.display = '';
+		} else {
+			tbody_CC.style.display = 'none';
+			tbody_LO.style.display = 'none';
+			tbody_PC.style.display = 'none';
+			tbody_PK.style.display = 'none';
+			tbody_CO.style.display = 'none';
+		}
+	}
+	ShowOrHide(document.getElementById('id_Mode'));
+ 
+	function showPosition( eventNo, dmaFrameNo )
+	{
+		var text = 	"Event: "+eventNo+"\n"+
+					"DMA Frame: "+dmaFrameNo+"\n";
+		message(text);
+	}
+</script> 
+ 
+ 
+ 
+<TBODY ID="sohAll"> 
+	<tr> 
+		<td> ScaleImage </td> 
+		<td> <SELECT name=scaleimage1 style="WIDTH: 250px" size=1 onchange='document.all.mxpeg1.ScaleImage=this.form.scaleimage1.value;updatefields();'> 
+				<OPTION selected value=Auto>Auto</OPTION> 
+				<OPTION value="Fill Container">Fill Container </OPTION> 
+				<OPTION value="Fit">Fit </OPTION> 
+				<OPTION value="Fixed 0.5x">Fixed 0.5x</OPTION> 
+				<OPTION value="Fixed 1x">Fixed 1x</OPTION> 
+				<OPTION value="Fixed 2x">Fixed 2x</OPTION> 
+			 </SELECT> 
+		</td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Container Size </td> 
+		<td> 	<input name=width1 style="WIDTH: 60px" value=''> x <input name=height1 style="WIDTH: 60px" value='' > 
+		</td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set 
+					onclick='document.all.mxpeg1.style.width=this.form.width1.value;document.all.mxpeg1.style.height=this.form.height1.value;updatefields();'> </td> 
+		<td> </td> 
+	</tr> 
+	<tr> 
+		<td> GoodRender </td> 
+		<td> <SELECT name=goodrender1 style="WIDTH: 250px" size=1 onchange='document.all.mxpeg1.GoodRender=this.form.goodrender1.value;'> 
+				<OPTION value=0>Windows Next-Neighbor Interpolation</OPTION> 
+				<OPTION value=1 selected>Best (linear or super sampling)</OPTION> 
+				<OPTION value=2>IPP Linear Interpolation</OPTION> 
+				<OPTION value=3>IPP Next-Neighbor Interpolation</OPTION> 
+				<OPTION value=4>IPP Cubic Interpolation</OPTION> 
+				<OPTION value=8>IPP Supersampling</OPTION> 
+			 </SELECT> 
+		</td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Proxy </td> 
+		<td> <input name=proxyip1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.Proxy=this.form.proxyip1.value;'> </td> 
+		<td> Example: 192.168.1.254 </td> 
+	</tr> 
+	<tr> 
+		<td> ProxyPort </td> 
+		<td> <input name=proxyport1 style="WIDTH: 250px" value='' onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.ProxyPort=this.form.proxyport1.value;'> </td> 
+		<td> 1..65535 </td> 
+	</tr> 
+	<tr> 
+		<td> Audio (from camera/player/clip)</td> 
+		<td> <input type=checkbox name=audio1 onmouseup='document.all.mxpeg1.Audio=!document.all.form1.audio1.status;' > </td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> Popupmenu </td> 
+		<td> <input type=checkbox name=menu1 onmouseup='document.all.mxpeg1.EnablePopupmenu=!document.all.form1.menu1.status;' > </td> 
+		<td> </td> 
+		<td> Enable / disable right mouse click </td> 
+	</tr> 
+	<tr> 
+		<td> BackColor </td> 
+		<td> <input name=backcolor1 value='' style="WIDTH: 250px" onfocus='updatefields()'> </td> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.BackColor=this.form.backcolor1.value;'> </td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> UnlockKey </td> 
+		<td> <input name=unlockkey1 value='' style="WIDTH: 250px" onfocus='updatefields()'> 
+		<td> <input type=button style="WIDTH: 100px" value=Set onclick='document.all.mxpeg1.UnLockCode=document.all.form1.unlockkey1.value;'> </td> 
+		<td></td> 
+	</tr> 
+	<tr> 
+		<td> About </td> 
+		<td> </td> 
+		<td> <input type=button style="WIDTH: 100px" value="Popup About" onclick='document.all.mxpeg1.AboutBox()'> </td> 
+		<td> Popup the About box </td> 
+	</tr> 
+	<tr> 
+		<td> ResX </td> 
+		<td> <span id='resx'></span> </td> 
+		<td> </td> 
+		<td> x-resolution of stream </td> 
+	</tr> 
+	<tr> 
+		<td> ResY </td> 
+		<td> <span id='resy'></span> </td> 
+		<td> </td> 
+		<td> y-resolution of stream </td> 
+	</tr> 
+	<tr> 
+		<td> SoundAvailable </td> 
+		<td> <span id='soundavailable'></span> </td> 
+		<td> </td> 
+		<td> Is sound in stream available </td> 
+	</tr> 
+	<tr> 
+		<td> FireEventOnFinishedFrame </td> 
+		<td> <input type=checkbox name=eventonframe1 onmouseup='document.all.mxpeg1.FireEventOnFinishedFrame=!document.all.form1.eventonframe1.status; ShowOrHideFrameInfo();' > </td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+ 
+	<TBODY ID="sohFrameInfo"> 
+		<tr> 
+			<td> DMATime</td> 
+			<td> <span id='dmatime'></span> </td> 
+			<td> </td> 
+			<td> Seconds image recorded by CMOS since camera boot</td> 
+		</tr> 
+		<tr> 
+			<td> DMAFrameNr </td> 
+			<td> <span id='dmanr'></span> </td> 
+			<td> </td> 
+			<td> Image recorded by CMOS since camera boot</td> 
+		</tr> 
+		<tr> 
+			<td> JPGFrameNr </td> 
+			<td> <span id='jpgnr'></span> </td> 
+			<td> </td> 
+			<td> Images converted since camera boot</td> 
+		</tr> 
+	</TBODY> 
+ 
+	<tr> 
+		<td> FireEventsOnMouseClicks </td> 
+		<td> <input type=checkbox name=eventonmouse onmouseup='document.all.mxpeg1.FireEventsOnMouseClicks=!document.all.form1.eventonmouse.status; ShowOrHideMouseInfo();' > </td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+ 
+	<TBODY ID="sohMouseInfo"> 
+		<tr> 
+			<td> Last mouse</td> 
+			<td> <span id='mouseinfo'></span> </td> 
+			<td> </td> 
+			<td> Last status from the mouse.</td> 
+		</tr> 
+	</TBODY> 
+ 
+	<tr> 
+		<td></td> 
+		<td></td> 
+		<td></td> 
+		<td></td> 
+	</tr> 
+</TBODY> 
+ 
+</table> 
+</form> 
+ 
+<script type='text/javascript'> 
+	function ShowOrHideFrameInfo() {
+		var tbody_FI = document.getElementById('sohFrameInfo');
+		if (document.all.mxpeg1.FireEventOnFinishedFrame) {
+			tbody_FI.style.display = '';
+		} else {
+			tbody_FI.style.display = 'none';
+		}
+	}
+	ShowOrHideFrameInfo();
+</script> 
+ 
+<script type='text/javascript'> 
+	function ShowOrHideMouseInfo() {
+		var tbody_FI = document.getElementById('sohMouseInfo');
+		if (document.all.mxpeg1.FireEventsOnMouseClicks) {
+			tbody_FI.style.display = '';
+		} else {
+			tbody_FI.style.display = 'none';
+		}
+	}
+	ShowOrHideMouseInfo();
+</script> 
+ 
+<script> 
+	if (document && document.all && document.all.mxpeg1 ) {
+		// IE
+	} else
+	if (document && document.getElementById ) {
+		// Firefox with ActiveX-Plugin?
+	} else {
+		message("Can?t use ActiveX, so i redirect to the guest page of the MOBOTIX camera");
+		location.href = 'http://10.1.0.36/cgi-bin/guestimage.html';
+	}
+	var updateInterval = 60000;
+	function resetfields() {
+		if (document && document.all && document.all.mxpeg1 ) {
+			document.all.form1.ip1.value=document.all.mxpeg1.IP;
+			document.all.form1.port1.value=document.all.mxpeg1.Port;
+			document.all.form1.ssl.value=document.all.mxpeg1.SSL;
+			document.all.form1.audio1.status=document.all.mxpeg1.Audio;
+			document.all.form1.audiotocam1.value=document.all.mxpeg1.AudioToCam;
+			document.all.form1.audiofullduplex1.status=document.all.mxpeg1.AudioFullduplex;
+			document.all.form1.framerate1.value=document.all.mxpeg1.Framerate;
+			document.all.form1.menu1.status=document.all.mxpeg1.EnablePopupmenu;
+			document.all.form1.clickinterface1.status=document.all.mxpeg1.EnableClickInterface;
+			document.all.form1.wheelzoomlock1.status=document.all.mxpeg1.WheelZoomLock;
+			document.all.form1.dispstrat1.value=document.all.mxpeg1.DisplayStrategy;
+			document.all.form1.proxyip1.value=document.all.mxpeg1.Proxy;
+			document.all.form1.proxyport1.value=document.all.mxpeg1.ProxyPort;
+			document.all.form1.width1.value=document.all.mxpeg1.style.width;
+			document.all.form1.height1.value=document.all.mxpeg1.style.height;
+			document.all.form1.scaleimage1.value=document.all.mxpeg1.ScaleImage;
+			document.all.form1.goodrender1.value=document.all.mxpeg1.GoodRender;
+			document.all.form1.accesslevel1.value=document.all.mxpeg1.AccessLevel;
+			document.all.form1.username1.value=document.all.mxpeg1.Username;
+			document.all.form1.passwd1.value=document.all.mxpeg1.Password;
+			document.all.form1.loginprompt.value=document.all.mxpeg1.LoginPrompt;
+			document.all.form1.backcolor1.value=document.all.mxpeg1.BackColor;
+			document.all.form1.StoryMode1.value=document.all.mxpeg1.StoryMode;
+			document.all.form1.unlockkey1.value=document.all.mxpeg1.UnLockCode;
+			document.all.form1.eventonframe1.status=document.all.mxpeg1.FireEventOnFinishedFrame;
+			document.all.form1.DecodeHoldTimeout1.value=document.all.mxpeg1.DecodeHoldTimeout;
+			document.all.form1.ConnectionTimeout1.value=document.all.mxpeg1.ConnectionTimeout;
+			document.all.form1.loop1.status=document.all.mxpeg1.PlayClipInLoop;
+			document.all.form1.changeCursorToMicro.status=document.all.mxpeg1.ChangeCursorToMicro;
+			document.all.form1.UpdateInterval1.value=updateInterval;
+		//	document.all.soundavailable.innerHTML=document.all.mxpeg1.IsSoundInLiveStream();
+		}
+	}
+	resetfields();
+ 
+	function updatefields() {
+		clearmessage();
+		//	...
+		if (document && document.all && document.all.mxpeg1 ) {
+			document.all.form1.width1.value=document.all.mxpeg1.style.width;
+			document.all.form1.height1.value=document.all.mxpeg1.style.height;
+		}
+	}
+ 
+	function message(text)
+	{
+		document.all.message.firstChild.data = text;
+		document.all.message.style.visibility="visible";
+		document.all.msgclear.style.visibility="visible";
+	}
+ 
+	function clearmessage()
+	{
+		document.all.message.style.visibility="hidden";
+		document.all.msgclear.style.visibility="hidden";
+	}
+	clearmessage();
+ 
+	function updateFrameNo() {
+		document.all.framecount.innerHTML=document.all.mxpeg1.GetCurrentFrameNr()+" of "+document.all.mxpeg1.GetFrameCount();
+	}
+ 
+	function updatePeriodic() {
+		if (document.all.form1.mode1.value == "Player") {
+			updateplayerbar();
+		}
+		if (document.all.form1.mode1.value == "HttpClip") {
+			updateFrameNo()
+		}
+	}
+ 
+	var updateIntervalId = setInterval('updatePeriodic();',updateInterval);
+	function updateplayerbar() {
+		if (document && document.all && document.all.mxpeg1 ) {
+ 
+		var tailnr=document.all.mxpeg1.EventTail;
+		var seqnr =document.all.mxpeg1.EventNo;
+		var headnr=document.all.mxpeg1.EventHead;
+ 
+		if (tailnr>=0 && seqnr>=0 && headnr>=0) {
+			var totalseq=headnr-tailnr;
+			if (totalseq<0) totalseq+=1000000;
+			var preseq=seqnr-tailnr;
+			if (preseq<0) preseq+=1000000;
+			var postseq=headnr-seqnr;
+			if (postseq<0) postseq+=1000000;
+ 
+			var totalwidth=150-1;
+			preseq  = Math.round(preseq*totalwidth/totalseq);
+			postseq = Math.round(postseq*totalwidth/totalseq);
+ 
+			var node=document.all.playerbar;
+			if (node) {
+				node.innerHTML="<table cellspacing='0' cellpadding='0'><tr>"
+				              +"  <td width='50'>"+tailnr+"</td>"
+				              +"  <td height='10' width='"+preseq+"' bgcolor='#bfbfff'></td>"
+				              +"  <td height='10' width='1' bgcolor='#ff0000'></td>"
+				              +"  <td height='10' width='"+postseq+"' bgcolor='#bfbfff'></td>"
+				              +"  <td width='50'>"+headnr+"</td>"
+				              +"</tr></table>";
+				}
+			}
+		}
+	}
+ 
+</script> 
+ 
+<!--
+<script language="JavaScript" for="mxpeg1" event="Connected()">
+	message("Connected!");
+</script>
+--> 
+ 
+<script language="JavaScript" for="mxpeg1" event="Cliploaded(no,total)"> 
+	if (document && document.all && document.all.mxpeg1 ) {
+ 
+		document.all.clipsloaded.innerHTML=no+"/"+total;
+		document.all.framecount.innerHTML=document.all.mxpeg1.GetFrameCount();
+		document.all.timespan.innerHTML=      document.all.mxpeg1.GetFirstTimeSec+"."+document.all.mxpeg1.GetFirstTimeMircoSec
+		                               +" - "+document.all.mxpeg1.GetLastTimeSec+"."+document.all.mxpeg1.GetLastTimeMircoSec;
+	}
+</script> 
+ 
+<script language="JavaScript" for="mxpeg1" event="ConnectionLost()"> 
+  message("Connection to camera lost!");
+</script> 
+ 
+ 
+<script language="JavaScript" for="mxpeg1" event="CameraEvent()"> 
+  message("New Event on Camera!");
+</script> 
+ 
+ 
+<script language="JavaScript" for="mxpeg1" event="ResChanged(x,y)"> 
+	if (document && document.all && document.all.mxpeg1 ) {
+		document.all.resx.innerHTML=x;
+		document.all.resy.innerHTML=y;
+		document.all.mxpeg1.style.width=x;
+		document.all.mxpeg1.style.height=y;
+	}
+</script> 
+ 
+<script language="JavaScript" for="mxpeg1" event="FinishedFrame(x,y)"> 
+  if (document && document.all) {
+	document.all.dmanr.innerHTML=x;
+	document.all.jpgnr.innerHTML=y;
+	document.all.dmatime.innerHTML=document.all.mxpeg1.GetCurrentTimeSec+"."+document.all.mxpeg1.GetCurrentTimeMircoSec;
+	updateFrameNo();
+	if (document.all.form1.mode1.value == "Player") {
+		updateplayerbar();
+	}
+  }
+</script> 
+ 
+<script language="JavaScript" for="mxpeg1" event="AudioStatusChanged(val)"> 
+//	message("New AudioStatus!");
+</script> 
+<script language="JavaScript" for="mxpeg1" event="AudioStatusContextChanged(val)"> 
+	message("New AudioStatus!");
+</script> 
+ 
+<script language="JavaScript" for="mxpeg1" event="MouseBtnLDown(x,y,flags)"> 
+	document.all.mouseinfo.innerHTML="Left mouse button down at x="+x+" y="+y+" flags="+flags;
+</script> 
+<script language="JavaScript" for="mxpeg1" event="MouseBtnRDown(x,y,flags)"> 
+	document.all.mouseinfo.innerHTML="Right mouse button down at x="+x+" y="+y+" flags="+flags;
+</script> 
+<script language="JavaScript" for="mxpeg1" event="MouseBtnMDown(x,y,flags)"> 
+	document.all.mouseinfo.innerHTML="Middle mouse button down at x="+x+" y="+y+" flags="+flags;
+</script> 
+ 
+ 
+<p>&nbsp;</p> 
+ 
+<a name="interface"></a> 
+<h3>Interface documentation</h3> 
+ 
+<h4>Properties</h4> 
+ 
+<table border="1" cellspacing="1" cellpadding="5"> 
+	<tr> 
+		<th> Name </th> 
+		<th> ID </th> 
+		<th> Type </th> 
+		<th> Default </th> 
+		<th> Description </th> 
+	</tr> 
+ 
+	<tr> 
+		<td> Live </td> 
+		<td> 25 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Set true for switching to live mode</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Player </td> 
+		<td> 18 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Set true for switching to camera player mode</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Incoming </td> 
+		<td> 14 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Set true for switching to incoming mode. The ActiveX will open an
+		     listening port on port "Port" and allow the addresses listed in "IP" to
+			  connect. Clients can connect to an ActiveX and push streams into it.
+			  This feature isn't recommended for productive use yet.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> IP </td> 
+		<td> 10 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> IP address or name of camera in live and player mode.
+	  List of IPs (separated by, e.g., space or comma) in incoming mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Port </td> 
+		<td> 8 </td> 
+		<td> long </td> 
+		<td> 80 </td> 
+		<td> Port to connect to in live and player mode. Listening port in incoming mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> SSL </td> 
+		<td> 74 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Use SSL fo transport.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Username </td> 
+		<td> 5 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> User name for authentication in live, player and httpClip mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Password </td> 
+		<td> 6 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> Password for authentication in live, player and httpClip mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> LoginPrompt (NEW) </td> 
+		<td> 76 </td> 
+		<td> long </td> 
+		<td> 3 </td> 
+		<td> Number of times to prompt for user name and password. LoginPrompt=0 disables login dialog.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Proxy </td> 
+		<td> 3 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> IP or name of the proxy server to use in live, player and httpClip mode. <br> 
+			Proxy=auto will retrieve local proxy settings (see Internet Explorer, LAN settings).
+		</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> ProxyPort </td> 
+		<td> 4 </td> 
+		<td> long </td> 
+		<td> 8080 </td> 
+		<td> Port of the proxy server to use in live, player and httpClip mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> AccessLevel </td> 
+		<td> 11 </td> 
+		<td> string </td> 
+		<td> "User" </td> 
+		<td> Set the access level "User" or "Guest" for live (and player) mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Framerate </td> 
+		<td> 9 </td> 
+		<td> string </td> 
+		<td> "25" </td> 
+		<td> The frame rate in live mode. Because this parameter will be send to the camera
+		     while connecting, the stream will be closed and reopend when framerate changes.
+			  Decimal values are allowed.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> ScaleImage </td> 
+		<td> 7 </td> 
+		<td> string </td> 
+		<td> "Auto" </td> 
+		<td> "Auto","Fill Container", "Fit","Fixed 0.5x","Fixed 1x" or "Fixed 2x". Scales the image
+		     in the given border. The ActiveX will clip the image to the given geometry.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> DisplayStrategy </td> 
+		<td> 2 </td> 
+		<td> string </td> 
+		<td> <pre>"minimum delay"</pre> </td> 
+		<td> In live mode, "minimum delay" will display the image as soon as possible.
+		     "smooth display" will delay it slightly, the stream will be smoother.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Audio </td> 
+		<td> 1 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Plays audio in live, player or httpClip mode. Only works when
+		     audio is available. </td> 
+	</tr> 
+ 
+	<tr> 
+		<td> EnableClickInterface </td> 
+		<td> 12 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Send mouse clicks to the camera in live mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> WheelZoomLock </td> 
+		<td> 75 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Disable zoom with the mouse wheel.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> EnablePopupmenu </td> 
+		<td> 13 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Enables the context menu.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> EnableDraw </td> 
+		<td> 15 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Enables drawing.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> UseMMTimer </td> 
+		<td> 17 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Use an Multimedia timer for faster and smoother displaying. Attention: Do
+		     not start more than 16 simultaneous instances of the ActiveX contol.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> NoTimerDraw </td> 
+		<td> 22 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Draws without using timers (MMTimer and/or normal). If set to true, the client Application
+		     needs use the Draw, GetAktBitMap, PushStreamPart and/or PushStreamPartOnlyPush funtion(s).</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> GoodRender </td> 
+		<td> 26 </td> 
+		<td> short </td> 
+		<td> 1 </td> 
+		<td> Use a better (but slower) scaling algorithm.<br><br> 
+			0=use Windows functions for interpolation<br> 
+			1=linear interpolation for upscaling,
+			  supersampling for downscaling<br> 
+			<br> 
+			2=linear interpolation (fast)<br> 
+			3=nearest neighbor interpolation (fast)<br> 
+			4=cubic interpolation<br> 
+			8=supersampling (only recommended for downscaling)<br> 
+			<br> 
+			More information can be found <a href="http://software.intel.com/sites/products/documentation/hpc/ipp/ippi/index.htm">here</a> 
+		</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> CGISource </td> 
+		<td> 20 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> "source" Option for "/control/event.jpg" in player mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> URLPath </td> 
+		<td> 21 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> Path to the pic storage in player mode.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> AudioToCam </td> 
+		<td> 23 </td> 
+		<td> short </td> 
+		<td> 0 </td> 
+		<td> Send audio stream to camera. 0 off, 1 only when user holds down right button, 2 on.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> AudioFullduplex </td> 
+		<td> 24 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> If false the camera's microphone will be muted when audio is sent to the camera.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> UnLockCode </td> 
+		<td> 27 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> Disable the MOBOTIX logo display when retrieving a new stream. The logo will still be displayed at startup.</td> 
+	</tr> 
+<!--
+	<tr>
+		<td> DebWheel </td>
+		<td> 19 </td>
+		<td> boolean </td>
+		<td> false </td>
+		<td> Internal use for debugging.</td>
+	</tr>
+--> 
+	<tr> 
+		<td> Language </td> 
+		<td> 16 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> Not implemented. For switching languages.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> FireEventOnFinishedFrame </td> 
+		<td> 54 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> Fires an event after decoding a frame (after each frame!).</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> EventHead </td> 
+		<td> 28 </td> 
+		<td> long </td> 
+		<td> -1 </td> 
+		<td> Read only. Player mode. Stores the number of the current Head (newest available) Sequence. -1 if not available. </td> 
+	</tr> 
+	<tr> 
+		<td> EventTail </td> 
+		<td> 29 </td> 
+		<td> long </td> 
+		<td> -1 </td> 
+		<td> Read only. Player mode. Stores the number of the current Tail (oldest available) Sequence. -1 if not available. </td> 
+	</tr> 
+	<tr> 
+		<td> EventNo </td> 
+		<td> 30 </td> 
+		<td> long </td> 
+		<td> -1 </td> 
+		<td> Read only. Player mode. Stores the number of the current Sequence. -1 if not available. </td> 
+	</tr> 
+ 
+	<tr> 
+		<td> StoreMode </td> 
+		<td> 35 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Read only. Player mode. 0 Snap shot mode. 1 packed Snap shot or MxPEG mode.</td> 
+	</tr> 
+	<tr> 
+		<td> Position </td> 
+		<td> 31 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Read only. Player mode. StoreMode 1: Number of frame in currentSequence. StoreMode 0: 0 for Event, &lt;0 for pre, &gt;0 for post Frames</td> 
+	</tr> 
+	<tr> 
+		<td> ClipCount </td> 
+		<td> 32 </td> 
+		<td> long </td> 
+		<td> -1 </td> 
+		<td> Read only. Player mode. StoreMode 1. Count of clip files in sequence</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> DMANo </td> 
+		<td> 48 </td> 
+		<td> string </td> 
+		<td> </td> 
+		<td> Read only. Player mode. Current frame time stamp.</td> 
+	</tr> 
+	<tr> 
+		<td> StoryAnte </td> 
+		<td> 33 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Read only. Player mode. StoreMode 0. Count of pre images.</td> 
+	</tr> 
+	<tr> 
+		<td> StoryPost </td> 
+		<td> 34 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Read only. Player mode. StoreMode 0. Count of post images.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> StoryMode </td> 
+		<td> 36 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player mode. 0 shows only Events. 1 shows Events with stories. 2 shows current Sequence.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> DecodeHoldTimeout </td> 
+		<td> 55 </td> 
+		<td> long </td> 
+		<td> 2000 </td> 
+		<td> Live mode. Continue decoding after t milliseconds without drawing. (500 &lt; t &lt; 10000) Useful when minimizing applications where the decoded frames are being processed further: Decoding will continue after DecodeHoldTimeout.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> ConnectionTimeout </td> 
+		<td> 56 </td> 
+		<td> long </td> 
+		<td> 5000 </td> 
+		<td> Live mode. Reconnect to camera after ((1000/fps) + t)  milli seconds without network traffic. ( 500 &lt; t &lt; 120000 )</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> HttpClip </td> 
+		<td> 57 </td> 
+		<td> string </td> 
+		<td> "" </td> 
+		<td> Switches to HttpClip mode and loads the given clip(s). Enter the URLs of the MxPEG clips to play, e.g. "http://&lt;server IP&gt;/&lt;path1&gt;/M00001.jpg, http://&lt;server IP&gt;/&lt;path2&gt;/M00001.jpg". The ActiveX control sends HTTP GET requests to the specified web server, but it will <i>not</i> access the local computer's disk or a mounted file share! Clip playback will start while loading the clips is still in progress. Setting a new HttpClip string will flush the internal buffer, thus stopping all previously shown clips.</td> 
+	</tr> 
+	<tr> 
+		<td> PlayClipInLoop </td> 
+		<td> 69 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> Start anew when finished. </td> 
+	</tr> 
+	<tr> 
+		<td> FireEventsOnMouseClicks </td> 
+		<td> 72 </td> 
+		<td> boolean </td> 
+		<td> false </td> 
+		<td> If true fire the events MouseBtnLDown, MouseBtnRDown and MouseBtnMDown. </td> 
+	</tr> 
+	<tr> 
+		<td> maxdelay </td> 
+		<td> 73 </td> 
+		<td> long </td> 
+		<td> 0 </td> 
+		<td> If greater zero not all frames will be displayed (but decoded!) in case maxdelay frames are received, but not displayed. </td> 
+	</tr> 
+</table> 
+ 
+<h4>Functions</h4> 
+ 
+<table border="1" cellspacing="1" cellpadding="5"> 
+	<tr> 
+		<th> Name </th> 
+		<th> ID </th> 
+		<th> Return </th> 
+		<th> Parameters </th> 
+		<th> Description </th> 
+	</tr> 
+ 
+	<tr> 
+		<td> ResX </td> 
+		<td> 37 </td> 
+		<td> short </td> 
+		<td> </td> 
+		<td> Return the current x Resolution</td> 
+	</tr> 
+	<tr> 
+		<td> ResY </td> 
+ 
+		<td> 38 </td> 
+		<td> short </td> 
+		<td> </td> 
+		<td> Return the current y Resolution</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> GetAktBitMap </td> 
+		<td> 53 </td> 
+		<td> long </td> 
+		<td> OLE_HANDLE* phOutData, long* pOutDataLen, long* pOutResX, long* pOutResY </td> 
+		<td> The ActiveX control will alloc a global buffer and copy its internal bitmap buffer into it. The handle of type HGLOBAL will
+		     be written to the variable that phOutData points to. The size will be written to the variable that pOutDataLen points to.
+			  pOutResX and pOutResY are pointers. If not equal 0 the current size will be stored in the positions
+			  they point to. The Application has to free the global buffer! Search for GlobalAlloc GlobalLock GlobalUnlock
+			  GlobalFree for more Information</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> PushStreamPartOnlyPush </td> 
+		<td> 39 </td> 
+		<td> long </td> 
+		<td> OLE_HANDLE hInData, long inDataLen, long* pOutResX, long* pOutResY </td> 
+		<td> Switches to pushstream mode. hInData is a global memory buffer of inDataLen size. The ActiveX control will free the buffer after
+		     decoding. For pOutResX and pOutResY see GetAktBitMap. Return the decoding status.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> PushStreamPart </td> 
+		<td> 39 </td> 
+		<td> long </td> 
+		<td> OLE_HANDLE hInData, long inDataLen, OLE_HANDLE* phOutData, long* pOutDataLen, long* pOutResX, long* pOutResY </td> 
+		<td> An combination of PushStreamPartOnlyPush and GetAktBitMap</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> Draw </td> 
+		<td> 41 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> (Re)Draw the current Frame. Return 0</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> GetStatus </td> 
+		<td> 42 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Return the current decoding status. &lt;3 the ActiveX need?s more Frames to start decoding. 3 the next Frame can
+		     be decoded directly.</td> 
+	</tr> 
+ 
+ 
+	<tr> 
+		<td> navGotoNext </td> 
+		<td> 43 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Go to next frame or sequence.</td> 
+	</tr> 
+	<tr> 
+		<td> navGotoPrev </td> 
+		<td> 44 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Go to previous frame or sequence.</td> 
+	</tr> 
+	<tr> 
+		<td> navGotoBegin </td> 
+		<td> 45 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Go to first frame or sequence.</td> 
+	</tr> 
+	<tr> 
+		<td> navGotoEnd </td> 
+		<td> 46 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Go to last frame or sequence.</td> 
+	</tr> 
+	<tr> 
+		<td> navPlay </td> 
+		<td> 47 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Start playing (audio may be enabled).</td> 
+	</tr> 
+	<tr> 
+		<td> navStop </td> 
+		<td> 48 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Stop playing.</td> 
+	</tr> 
+	<tr> 
+		<td> navPlayRev </td> 
+		<td> 49 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Start reverse playing.</td> 
+	</tr> 
+	<tr> 
+		<td> navPlayFF </td> 
+		<td> 50 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Start fast forward playing.</td> 
+	</tr> 
+	<tr> 
+		<td> navPlayREW </td> 
+		<td> 51 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> Player oder httpclip mode only. Start fast backward playing.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> navGotoEventNo </td> 
+		<td> 52 </td> 
+		<td> long </td> 
+		<td> long event, long story </td> 
+		<td> Player mode only. Goto sequence event. Story is not implemented yet. Returns0 on error.</td> 
+	</tr> 
+ 
+	<tr> 
+		<td> GetCurrentTimeSec </td> 
+		<td> 58 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the time of the current frame. Part 1: Seconds since 1.1.1970</td> 
+	</tr> 
+	<tr> 
+		<td> GetCurrentTimeMircoSec </td> 
+		<td> 59 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the time of the current frame. Part 2: <em>Milli<em>seconds</td> 
+	</tr> 
+	<tr> 
+		<td> GetFirstTimeSec </td> 
+		<td> 60 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Returnsthe time of the first frame. Part 1: Seconds since 1.1.1970</td> 
+	</tr> 
+	<tr> 
+		<td> GetFirstTimeMircoSec </td> 
+		<td> 61 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the time of the first frame. Part 2: <em>Milli<em>seconds</td> 
+	</tr> 
+	<tr> 
+		<td> GetLastTimeSec </td> 
+		<td> 62 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the time of the last frame. Part 1: Seconds since 1.1.1970</td> 
+	</tr> 
+	<tr> 
+		<td> GetLastTimeMircoSec </td> 
+		<td> 63 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the time of the last frame. Part 2: <em>Milli<em>seconds</td> 
+	</tr> 
+	<tr> 
+		<td> GetFrameCount </td> 
+		<td> 64 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return count of frames loaded.</td> 
+	</tr> 
+	<tr> 
+		<td> GetCurrentFrameNr </td> 
+		<td> 65 </td> 
+		<td> long </td> 
+		<td> </td> 
+		<td> httpClip mode only. Return the current frame's number. </td> 
+	</tr> 
+	<tr> 
+		<td> GotoFrameNo </td> 
+		<td> 66 </td> 
+		<td> boolean </td> 
+		<td> long FrameNo </td> 
+		<td> httpClip mode only. Go to frame number FrameNo. False on Error</td> 
+	</tr> 
+	<tr> 
+		<td> GotoTime </td> 
+		<td> 67 </td> 
+		<td> boolean </td> 
+		<td> long sec, long microSec </td> 
+		<td> httpClip mode only. Go to frame closest to time (seconds since 1.1.1970). All loaded clips
+		     must be ordered timewise ascending.
+		</td> 
+	</tr> 
+	<tr> 
+		<td> GotoTimeStr </td> 
+		<td> 68 </td> 
+		<td> boolean </td> 
+		<td> BSTR Time </td> 
+		<td> httpClip mode only. Goto frame closest to time (seconds since 1.1.1970). All loaded clips
+		     must be ordered timewise ascending.
+		</td> 
+	</tr> 
+	<tr> 
+		<td> IsSoundInLiveStream </td> 
+		<td> 70 </td> 
+		<td> short </td> 
+		<td> </td> 
+		<td> returns 1 if sound in livestream available.
+		</td> 
+	</tr> 
+	<tr> 
+		<td> ChangeCursorToMicro </td> 
+		<td> 71 </td> 
+		<td> boolean </td> 
+		<td> true </td> 
+		<td> If true and the cursor is over the ActiveX, the cursor will be changed. The cursor change to
+		     an black microphon, if the ActiveX is ready to send and waiting for the mouseclick of the User.
+			 An red microphon is used while sending audio.
+		</td> 
+	</tr> 
+</table> 
+ 
+ 
+<h4>Events</h4> 
+ 
+<table border="1" cellspacing="1" cellpadding="5"> 
+	<tr> 
+		<th> Name </th> 
+		<th> ID </th> 
+		<th> Parameter </th> 
+		<th> Description </th> 
+	</tr> 
+	<tr> 
+		<td> ResChanged </td> 
+		<td> 1 </td> 
+		<td> short x, short y </td> 
+		<td> Resolution has changes to x * y. </td> 
+	</tr> 
+	<tr> 
+		<td> FinishedFrame </td> 
+		<td> 2 </td> 
+		<td> long DMAFrameNr, long JPGFrameNr </td> 
+		<td> Frame decoding finished. DMAFrameNr and JPGFrameNr are useful for debugging only.</td> 
+	</tr> 
+	<tr> 
+		<td> Connected </td> 
+		<td> 3 </td> 
+		<td> Parameter </td> 
+		<td> Live and httpClip mode only. ActiveX control has connected to camera or server</td> 
+	</tr> 
+	<tr> 
+		<td> ConnectionLost </td> 
+		<td> 4 </td> 
+		<td> Parameter </td> 
+		<td> Live mode only. ActiveX has lost connection to camera</td> 
+	</tr> 
+	<tr> 
+		<td> Cliploaded </td> 
+		<td> 5 </td> 
+		<td> short ClipNo, short ClipTotal </td> 
+		<td> httpClip mode only. Clip ClipNo of ClipTotal has been loaded. </td> 
+	</tr> 
+	<tr> 
+		<td> ClipBorderReached </td> 
+		<td> 6 </td> 
+		<td> long LastFrameNo, long NextFrameNo </td> 
+		<td> httpClip mode only. When looping, this event will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> FocusLost </td> 
+		<td> 7 </td> 
+		<td> </td> 
+		<td> When Focos lost will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> AudioStatusChanged </td> 
+		<td> 8 </td> 
+		<td> short newStatus</td> 
+		<td> When audio status changed will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> AudioStatusContextChanged </td> 
+		<td> 9 </td> 
+		<td> BOOL newStatus</td> 
+		<td> When audio status changed in contextmenu will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> MouseBtnLDown </td> 
+		<td> 10 </td> 
+		<td> long x, long y, long Flags</td> 
+		<td> When left mouse button is pressed and FireEventsOnMouseClicks true will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> MouseBtnRDown </td> 
+		<td> 11 </td> 
+		<td> long x, long y, long Flags</td> 
+		<td> When right mouse button is pressed and FireEventsOnMouseClicks true will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> MouseBtnMDown </td> 
+		<td> 12 </td> 
+		<td> long x, long y, long Flags</td> 
+		<td> When middle mouse button is pressed and FireEventsOnMouseClicks true will be fired. </td> 
+	</tr> 
+	<tr> 
+		<td> CameraEvent </td> 
+		<td> 13 </td> 
+		<td> </td> 
+		<td> Will be "fired" if the ActiveX control is detecting an event image in the stream. </td> 
+	</tr> 
+</table> 
+ 
+<!--
+--> 
+ 
+<hr> 
+MOBOTIX AG<br> 
+Kaiserstrasse<br> 
+67722 Langmeil<br> 
+Germany<br> 
+Phone: +49 6302 9816-0<br> 
+<a href="mailto:mxpeg@mobotix.com">mxpeg@mobotix.com</a><br> 
+</p> 
+<h4>Information contained in this document is subject to change without notice.</h4> 
+<h4>Copyright &copy; 2004-2010 MOBOTIX AG</h4> 
+ 
+</body> 
+</html> 

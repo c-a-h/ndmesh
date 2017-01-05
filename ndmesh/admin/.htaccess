@@ -1,0 +1,8 @@
+AuthName "Please login:"
+AuthType Basic
+AuthUserFile /usr/local/apache2/htdocs/ndmesh/admin/.htpasswd
+AuthGroupFile /dev/null
+require user cholguin gangle cpoellab nyadav
+<Limit GET POST PUT>
+require valid-user
+</Limit>

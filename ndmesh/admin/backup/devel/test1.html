@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>test page1</title>
+    <style type="text/css">
+        h2 {color:#FDD017}
+        link {color:#FDD017}
+    </style>
+    
+<script type="text/javascript"> 
+document.onkeyup = KeyCheck;       
+ 
+function KeyCheck(e)
+{
+   var KeyID = (window.event) ? event.keyCode : e.keyCode;
+ 
+   switch(KeyID)
+   {
+ 
+      case 37:
+      document.Form1.Direction.value = "PanLeft";
+      document.Form1.submit();
+      break;
+ 
+      case 38:
+      document.Form1.Direction.value = "TiltUp";
+      document.Form1.submit();
+      break;
+ 
+      case 39:
+      document.Form1.Direction.value = "PanRight";
+      document.Form1.submit();
+      break;
+ 
+      case 40:
+      document.Form1.Direction.value = "TiltDown";
+      document.Form1.submit();
+      break;
+   }
+}
+</script> 
+    
+</head>
+
+<body bgcolor=#151B54>
+    
+    <form name=Form1 action=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi target="dummy">
+        <input type=hidden name=Direction value="" />
+    </form>
+        
+
+    <h2 align="center">Simple Camera controls</h2>
+    <!--<a href=http://169.254.255.253/Set?Func=Pan&Kind=0&DegMode=4>PAN LEFT</a>-->
+    <!--<a href=http://169.254.255.253/Set?Func=Pan&Kind=0&DegMode=6>PAN RIGHT</a>-->
+    <!--<a href=http://169.254.255.253/Set?Func=Pan&Kind=0&DegMode=4>PAN
+    LEFT</a>-->
+    <!--a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/moveLeft.cgi target="dummy">move left</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/moveRight.cgi target="showframe">move right</a!-->
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/newClient.cgi target="showframe">Video Stream</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/ndmesh/basic.html target="showframe">Stop video stream</a>
+    <br>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=HomePosition target="dummy">Home Position</a>
+    <br><br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=PanLeft target="dummy">Pan Left</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=PanRight target="dummy">Pan Right</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=PanScan target="dummy">Pan Scan</a>
+    <br><br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=TiltUp target="dummy">Tilt Up</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=TiltDown target="dummy">Tilt Down</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=TiltScan target="dummy">Tilt Scan</a>
+    
+    <br><br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=BacklightOn target="dummy">Backlight On</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=BacklightOff target="dummy">Backlight Off</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=Brighter target="dummy">Brighter</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=Darker target="dummy">Darker</a>
+    <br>
+    <a href=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/nphControl.cgi?Direction=DefaultBrightness target="dummy">Default Brightness</a>
+    <br>
+    
+<!--   onclick=http://snoopy.cse.nd.edu/cgi-bin/ndMeshScripts/genCamControls.cgi -->
+    
+    </body>
+</html>
